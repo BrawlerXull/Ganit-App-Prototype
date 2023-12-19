@@ -14,13 +14,13 @@ public class Main {
     public static void main(String[] args) {
         Workbook workbook = new XSSFWorkbook();
 
-        Sheet imageSheet = workbook.createSheet("Images");
-        Sheet dataSheet = workbook.createSheet("Data");
+        Sheet combinedSheet = workbook.createSheet("Combined Data and Images");
 
-        Row headingRow = dataSheet.createRow(0);
+        Row headingRow = combinedSheet.createRow(0);
         headingRow.createCell(0).setCellValue("Sr. No");
         headingRow.createCell(1).setCellValue("Question");
         headingRow.createCell(2).setCellValue("Answer");
+        headingRow.createCell(3).setCellValue("Image");
 
         for (int i = 0; i < 200; i++) {
             String chartTitle = "Chart " + (i + 1);
@@ -36,18 +36,17 @@ public class Main {
 
             saveChartAsImage(barChart, imagePath);
 
-            addImageToSheet(workbook, imageSheet, imagePath, i);
-
-            Row dataRow = dataSheet.createRow(i + 1);
+            Row dataRow = combinedSheet.createRow(i + 1);
             dataRow.createCell(0).setCellValue(i + 1);
             dataRow.createCell(1).setCellValue("How much is the difference in the number of travelers between the vehicle used most and least?");
             int difference = calculateDifference();
             dataRow.createCell(2).setCellValue("Difference: " + difference);
+
+            addImageToSheet(workbook, combinedSheet, imagePath, i, 3);
         }
 
-        for (int i = 0; i < 3; i++) {
-            imageSheet.autoSizeColumn(i);
-            dataSheet.autoSizeColumn(i);
+        for (int i = 0; i < 4; i++) {
+            combinedSheet.autoSizeColumn(i);
         }
 
         try (FileOutputStream fileOut = new FileOutputStream("output.xlsx")) {
@@ -56,6 +55,7 @@ public class Main {
             e.printStackTrace();
         }
     }
+
 
     private static String[] generateRandomCategories() {
         String[] categories = new String[5];
@@ -82,22 +82,22 @@ public class Main {
         }
     }
 
-    private static void addImageToSheet(Workbook workbook, Sheet sheet, String imagePath, int row) {
+    private static void addImageToSheet(Workbook workbook, Sheet sheet, String imagePath, int row, int col) {
         try (InputStream inputStream = new FileInputStream(imagePath)) {
             byte[] inputImageBytes = IOUtils.toByteArray(inputStream);
             int inputImagePictureID = workbook.addPicture(inputImageBytes, Workbook.PICTURE_TYPE_PNG);
             Drawing<?> drawing = sheet.createDrawingPatriarch();
-            ClientAnchor anchor = createClientAnchor(row);
+            ClientAnchor anchor = createClientAnchor(row + 1, col);
             drawing.createPicture(anchor, inputImagePictureID);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private static ClientAnchor createClientAnchor(int row) {
+    private static ClientAnchor createClientAnchor(int row, int col) {
         ClientAnchor clientAnchor = new XSSFClientAnchor();
-        clientAnchor.setCol1(0);
-        clientAnchor.setCol2(1);
+        clientAnchor.setCol1(col);
+        clientAnchor.setCol2(col + 1);
         clientAnchor.setRow1(row);
         clientAnchor.setRow2(row + 1);
         return clientAnchor;
@@ -129,13 +129,7 @@ public class Main {
 
 // This is just the prototype version other features can be added in the further version with GUI (if required)
 
-// 'Output.xlsx will be generated at the root directory
-
-
-
-
-
-
+// 'Output.xlsx will be generated at the root dire
 
 
 
