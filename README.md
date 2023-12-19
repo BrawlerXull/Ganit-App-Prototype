@@ -6,6 +6,14 @@
  - Generates 200 bar graphs with corresponding questions and solutions.
  - Data is exported to an Excel file for easy access.
 
+
+## Usage
+
+Clone the repository to your local machine.
+   ```bash
+   git clone https://github.com/BrawlerXull/Ganit-App-Prototype.git
+ ```
+
 ## Screenshots
 
 ### Excel File
@@ -14,8 +22,3 @@
 ### Bar Graph Prototype
 ![Bar Graph](https://github.com/BrawlerXull/Ganit-App-Prototype/assets/111864031/54f5a1af-36ee-4633-9d0e-fb57b9a7f906)
 
-## Usage
-
-Clone the repository to your local machine.
-   ```bash
-   git clone https://github.com/BrawlerXull/Ganit-App-Prototype.git
