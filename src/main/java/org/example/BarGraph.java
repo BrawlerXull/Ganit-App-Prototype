@@ -5,7 +5,6 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 public class BarGraph {
@@ -35,7 +34,7 @@ public class BarGraph {
         return barChart;
     }
 
-    private static int findMax(int[] array) {
+    public static int findMax(int[] array) {
         if (array == null || array.length == 0) {
             throw new IllegalArgumentException("Array is null or empty");
         }
@@ -51,7 +50,7 @@ public class BarGraph {
         return max;
     }
 
-    private static int getBound(int maxValue){
+    public static int getBound(int maxValue){
         if(maxValue <= 10){
             return 10;
         }

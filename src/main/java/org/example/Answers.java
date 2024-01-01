@@ -1,0 +1,178 @@
+package org.example;
+
+import java.util.Arrays;
+
+import static org.example.BarGraph.findMax;
+import static org.example.BarGraph.getBound;
+
+public class Answers {
+    public static String getAnswer(String question, int[] values) {
+        return switch (question) {
+            case "This bar graph is for" -> "This bar graph represents the number of travelers by different means.";
+            case "Scale used in this graph is" -> {
+                int maxElement = findMax(values);
+                int bound = getBound(maxElement);
+
+                if (bound > 0) {
+                    yield String.format("1 cm on the y-axis represents %d travelers.", bound / 20);
+                } else {
+                    yield "Unable to determine the scale for the given data.";
+                }
+            }
+
+            case "How much is the total of travellers for top 3 values" -> {
+                int totalTop3Values = calculateTotalTop3Values(values);
+                yield String.valueOf(totalTop3Values);
+            }
+            case "Which vehicle is used least for travelling", "Which vehicle is used least?" -> {
+                yield findLeastUsedVehicle(values);
+            }
+            case "Which vehicle is used most for travelling", "Which vehicle is used most?" -> {
+                yield findMostUsedVehicle(values);
+            }
+            case "How many different vehicles do travellers use?" -> {
+                int numberOfDifferentVehicles = countDifferentVehicles(values);
+                yield String.valueOf(numberOfDifferentVehicles);
+            }
+            case "Which are the different vehicles used by travellers" -> {
+                yield listDifferentVehicles(values);
+            }
+            case "How much is the difference in the number of travellers between the vehicle used most and least?" -> {
+                int difference = calculateDifferenceMostLeast(values);
+                yield String.valueOf(difference);
+            }
+            case "How many are the total travellers travelling by the vehicles used most and least?" -> {
+                int totalMostLeast = calculateTotalMostLeast(values);
+                yield String.valueOf(totalMostLeast);
+            }
+            case "How many are the total travellers?" -> {
+                int totalTravelers = calculateTotalTravelers(values);
+                yield String.valueOf(totalTravelers);
+            }
+            case "How many are the total of travellers travelling by the second and third most used vehicle." -> {
+                int totalSecondThirdMostUsed = calculateTotalSecondThirdMostUsed(values);
+                yield String.valueOf(totalSecondThirdMostUsed);
+            }
+            default -> "Invalid question";
+        };
+    }
+
+
+    private static int calculateTotalTop3Values(int[] values) {
+        int total = 0;
+
+        Arrays.sort(values);
+        int l = values.length;
+        total = values[l - 1] + values[l - 2] + values[l - 3];
+        return total;
+    }
+
+    private static String findLeastUsedVehicle(int[] values) {
+        int minIndex = 0;
+        for (int i = 1; i < values.length; i++) {
+            if (values[i] < values[minIndex]) {
+                minIndex = i;
+            }
+        }
+        return "Vehicle " + (minIndex + 1);
+    }
+
+    private static String findMostUsedVehicle(int[] values) {
+        int maxIndex = 0;
+        for (int i = 1; i < values.length; i++) {
+            if (values[i] > values[maxIndex]) {
+                maxIndex = i;
+            }
+        }
+        return "Vehicle " + (maxIndex + 1);
+    }
+
+    private static int countDifferentVehicles(int[] values) {
+        int count = 0;
+        for (int value : values) {
+            if (value > 0) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    private static String listDifferentVehicles(int[] values) {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < values.length; i++) {
+            if (values[i] > 0) {
+                result.append("Vehicle ").append(i + 1).append(", ");
+            }
+        }
+        return result.toString().replaceAll(", $", "");
+    }
+
+    private static int calculateDifferenceMostLeast(int[] values) {
+        int mostIndex = findMostUsedIndex(values);
+        int leastIndex = findLeastUsedIndex(values);
+        return values[mostIndex] - values[leastIndex];
+    }
+
+    private static int calculateTotalMostLeast(int[] values) {
+        int mostIndex = findMostUsedIndex(values);
+        int leastIndex = findLeastUsedIndex(values);
+        return values[mostIndex] + values[leastIndex];
+    }
+
+    private static int calculateTotalTravelers(int[] values) {
+        int total = 0;
+        for (int value : values) {
+            total += value;
+        }
+        return total;
+    }
+
+    private static int calculateTotalSecondThirdMostUsed(int[] values) {
+        int secondMostIndex = findSecondMostUsedIndex(values);
+        int thirdMostIndex = findThirdMostUsedIndex(values);
+        return values[secondMostIndex] + values[thirdMostIndex];
+    }
+
+    private static int findMostUsedIndex(int[] values) {
+        int maxIndex = 0;
+        for (int i = 1; i < values.length; i++) {
+            if (values[i] > values[maxIndex]) {
+                maxIndex = i;
+            }
+        }
+        return maxIndex;
+    }
+
+    private static int findLeastUsedIndex(int[] values) {
+        int minIndex = 0;
+        for (int i = 1; i < values.length; i++) {
+            if (values[i] < values[minIndex]) {
+                minIndex = i;
+            }
+        }
+        return minIndex;
+    }
+
+    private static int findSecondMostUsedIndex(int[] values) {
+        int mostIndex = findMostUsedIndex(values);
+        int secondMostIndex = 0;
+        for (int i = 1; i < values.length; i++) {
+            if (i != mostIndex && values[i] > values[secondMostIndex]) {
+                secondMostIndex = i;
+            }
+        }
+        return secondMostIndex;
+    }
+
+    private static int findThirdMostUsedIndex(int[] values) {
+        int mostIndex = findMostUsedIndex(values);
+        int secondMostIndex = findSecondMostUsedIndex(values);
+        int thirdMostIndex = 0;
+        for (int i = 1; i < values.length; i++) {
+            if (i != mostIndex && i != secondMostIndex && values[i] > values[thirdMostIndex]) {
+                thirdMostIndex = i;
+            }
+        }
+        return thirdMostIndex;
+    }
+}

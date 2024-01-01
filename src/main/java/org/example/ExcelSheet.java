@@ -17,8 +17,11 @@ public class ExcelSheet {
         Row headingRow = combinedSheet.createRow(0);
         headingRow.createCell(0).setCellValue("Sr. No");
         headingRow.createCell(1).setCellValue("Image Path");
-        headingRow.createCell(2).setCellValue("Question");
-        headingRow.createCell(3).setCellValue("Answer");
+
+        for (int j = 0; j < 5; j++) {
+            headingRow.createCell(2 + j * 2).setCellValue("Question " + (j + 1));
+            headingRow.createCell(3 + j * 2).setCellValue("Answer " + (j + 1));
+        }
 
         for (int i = 0; i < 200; i++) {
             String chartTitle = "Chart " + (i + 1);
@@ -37,12 +40,17 @@ public class ExcelSheet {
             Row dataRow = combinedSheet.createRow(i + 1);
             dataRow.createCell(0).setCellValue(i + 1);
             dataRow.createCell(1).setCellValue(imagePath);
-            dataRow.createCell(2).setCellValue("How much is the difference in the number of travelers between the vehicle used most and least?");
-            int difference = calculateDifference();
-            dataRow.createCell(3).setCellValue("Difference: " + difference);
+
+            String[] questions = Questions.getRandomQuestions(13);
+            String[] answers = new String[5];
+            for (int j = 0; j < 5; j++) {
+                answers[j] = Answers.getAnswer(questions[j], values);
+                dataRow.createCell(2 + j * 2).setCellValue(questions[j]);
+                dataRow.createCell(3 + j * 2).setCellValue(answers[j]);
+            }
         }
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 14; i++) {
             combinedSheet.autoSizeColumn(i);
         }
     }
@@ -72,12 +80,5 @@ public class ExcelSheet {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    private static int calculateDifference() {
-        Random random = new Random();
-        int most = random.nextInt(100);
-        int least = random.nextInt(100);
-        return Math.abs(most - least);
     }
 }
