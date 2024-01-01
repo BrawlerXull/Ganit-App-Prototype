@@ -18,9 +18,9 @@ public class Main {
 
         Row headingRow = combinedSheet.createRow(0);
         headingRow.createCell(0).setCellValue("Sr. No");
-        headingRow.createCell(1).setCellValue("Question");
-        headingRow.createCell(2).setCellValue("Answer");
-        headingRow.createCell(3).setCellValue("Image");
+        headingRow.createCell(1).setCellValue("Image Path");
+        headingRow.createCell(2).setCellValue("Question");
+        headingRow.createCell(3).setCellValue("Answer");
 
         for (int i = 0; i < 200; i++) {
             String chartTitle = "Chart " + (i + 1);
@@ -38,11 +38,10 @@ public class Main {
 
             Row dataRow = combinedSheet.createRow(i + 1);
             dataRow.createCell(0).setCellValue(i + 1);
-            dataRow.createCell(1).setCellValue("How much is the difference in the number of travelers between the vehicle used most and least?");
+            dataRow.createCell(1).setCellValue(imagePath);
+            dataRow.createCell(2).setCellValue("How much is the difference in the number of travelers between the vehicle used most and least?");
             int difference = calculateDifference();
-            dataRow.createCell(2).setCellValue("Difference: " + difference);
-
-            addImageToSheet(workbook, combinedSheet, imagePath, i, 3);
+            dataRow.createCell(3).setCellValue("Difference: " + difference);
         }
 
         for (int i = 0; i < 4; i++) {
