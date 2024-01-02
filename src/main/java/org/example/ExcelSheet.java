@@ -6,6 +6,9 @@ import org.jfree.chart.JFreeChart;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 public class ExcelSheet {
@@ -56,12 +59,12 @@ public class ExcelSheet {
     }
 
     private static String[] generateRandomCategories() {
-        String[] categories = new String[5];
-        for (int i = 0; i < categories.length; i++) {
-            categories[i] = "Category " + (i + 1);
-        }
-        return categories;
+        String[] vehicles = {"Car", "Bus", "Truck", "Motorcycle", "Bicycle", "Scooter"};
+        List<String> vehicleList = Arrays.asList(vehicles);
+        Collections.shuffle(vehicleList);
+        return vehicleList.subList(0, 4).toArray(new String[0]);
     }
+
 
     private static int[] generateRandomValues(int size) {
         int[] values = new int[size];
