@@ -1,12 +1,13 @@
 package org.example;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static org.example.BarGraph.findMax;
 import static org.example.BarGraph.getBound;
 
 public class Answers {
-    public static String getAnswer(String question, int[] values) {
+    public static String getAnswer(String question, int[] values, List<String> vehicleList) {
         return switch (question) {
             case "This bar graph is for" -> "This bar graph represents the number of travelers by different means.";
             case "Scale used in this graph is" -> {
@@ -14,7 +15,7 @@ public class Answers {
                 int bound = getBound(maxElement);
 
                 if (bound > 0) {
-                    yield String.format("1 cm on the y-axis represents %d travelers.", bound / 20);
+                    yield String.format("1 cm on the y-axis represents %d travelers.", bound / 10);
                 } else {
                     yield "Unable to determine the scale for the given data.";
                 }
@@ -25,24 +26,24 @@ public class Answers {
                 yield String.valueOf(totalTop3Values);
             }
             case "Which vehicle is used least for travelling", "Which vehicle is used least?" -> {
-                yield findLeastUsedVehicle(values);
+                yield findLeastUsedVehicle(values, vehicleList);
             }
             case "Which vehicle is used most for travelling", "Which vehicle is used most?" -> {
-                yield findMostUsedVehicle(values);
+                yield findMostUsedVehicle(values, vehicleList);
             }
             case "How many different vehicles do travellers use?" -> {
                 int numberOfDifferentVehicles = countDifferentVehicles(values);
                 yield String.valueOf(numberOfDifferentVehicles);
             }
             case "Which are the different vehicles used by travellers" -> {
-                yield listDifferentVehicles(values);
+                yield listDifferentVehicles(values, vehicleList);
             }
             case "How much is the difference in the number of travellers between the vehicle used most and least?" -> {
-                int difference = calculateDifferenceMostLeast(values);
+                int difference = calculateDifferenceMostLeast(values, vehicleList);
                 yield String.valueOf(difference);
             }
             case "How many are the total travellers travelling by the vehicles used most and least?" -> {
-                int totalMostLeast = calculateTotalMostLeast(values);
+                int totalMostLeast = calculateTotalMostLeast(values, vehicleList);
                 yield String.valueOf(totalMostLeast);
             }
             case "How many are the total travellers?" -> {
@@ -50,7 +51,7 @@ public class Answers {
                 yield String.valueOf(totalTravelers);
             }
             case "How many are the total of travellers travelling by the second and third most used vehicle." -> {
-                int totalSecondThirdMostUsed = calculateTotalSecondThirdMostUsed(values);
+                int totalSecondThirdMostUsed = calculateTotalSecondThirdMostUsed(values, vehicleList);
                 yield String.valueOf(totalSecondThirdMostUsed);
             }
             default -> "Invalid question";
@@ -67,24 +68,24 @@ public class Answers {
         return total;
     }
 
-    private static String findLeastUsedVehicle(int[] values) {
+    private static String findLeastUsedVehicle(int[] values, List<String> vehicleList) {
         int minIndex = 0;
         for (int i = 1; i < values.length; i++) {
             if (values[i] < values[minIndex]) {
                 minIndex = i;
             }
         }
-        return "Vehicle " + (minIndex + 1);
+        return vehicleList.get(minIndex);
     }
 
-    private static String findMostUsedVehicle(int[] values) {
+    private static String findMostUsedVehicle(int[] values, List<String> vehicleList) {
         int maxIndex = 0;
         for (int i = 1; i < values.length; i++) {
             if (values[i] > values[maxIndex]) {
                 maxIndex = i;
             }
         }
-        return "Vehicle " + (maxIndex + 1);
+        return vehicleList.get(maxIndex);
     }
 
     private static int countDifferentVehicles(int[] values) {
@@ -97,23 +98,23 @@ public class Answers {
         return count;
     }
 
-    private static String listDifferentVehicles(int[] values) {
+    private static String listDifferentVehicles(int[] values, List<String> vehicleList) {
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < values.length; i++) {
             if (values[i] > 0) {
-                result.append("Vehicle ").append(i + 1).append(", ");
+                result.append(vehicleList.get(i)).append(", ");
             }
         }
         return result.toString().replaceAll(", $", "");
     }
 
-    private static int calculateDifferenceMostLeast(int[] values) {
+    private static int calculateDifferenceMostLeast(int[] values, List<String> vehicleList) {
         int mostIndex = findMostUsedIndex(values);
         int leastIndex = findLeastUsedIndex(values);
         return values[mostIndex] - values[leastIndex];
     }
 
-    private static int calculateTotalMostLeast(int[] values) {
+    private static int calculateTotalMostLeast(int[] values, List<String> vehicleList) {
         int mostIndex = findMostUsedIndex(values);
         int leastIndex = findLeastUsedIndex(values);
         return values[mostIndex] + values[leastIndex];
@@ -127,7 +128,7 @@ public class Answers {
         return total;
     }
 
-    private static int calculateTotalSecondThirdMostUsed(int[] values) {
+    private static int calculateTotalSecondThirdMostUsed(int[] values, List<String> vehicleList) {
         int secondMostIndex = findSecondMostUsedIndex(values);
         int thirdMostIndex = findThirdMostUsedIndex(values);
         return values[secondMostIndex] + values[thirdMostIndex];

@@ -27,11 +27,14 @@ public class ExcelSheet {
         headingRow.createCell(6).setCellValue("Correct 2");
         headingRow.createCell(7).setCellValue("Correct 3");
         headingRow.createCell(8).setCellValue("Correct 4");
-        headingRow.createCell(9).setCellValue("Time in Seconds");
-        headingRow.createCell(10).setCellValue("Difficulty Level");
-        headingRow.createCell(11).setCellValue("Question (Audio / Video / Image)");
-        headingRow.createCell(12).setCellValue("Contributor's Registered mailId");
-        headingRow.createCell(13).setCellValue("Variation Number");
+        headingRow.createCell(9).setCellValue("Wrong Answer 1");
+        headingRow.createCell(10).setCellValue("Wrong Answer 2");
+        headingRow.createCell(11).setCellValue("Wrong Answer 3");
+        headingRow.createCell(12).setCellValue("Time in Seconds");
+        headingRow.createCell(13).setCellValue("Difficulty Level");
+        headingRow.createCell(14).setCellValue("Question (Audio / Video / Image)");
+        headingRow.createCell(15).setCellValue("Contributor's Registered mailId");
+        headingRow.createCell(16).setCellValue("Variation Number");
 
         for (int i = 0; i < 200; i++) {
             String chartTitle = "Chart " + (i + 1);
@@ -56,7 +59,7 @@ public class ExcelSheet {
             String[] questions = Arrays.copyOfRange(Questions.getRandomQuestions(13), 0, 5);
             String[] answers = new String[5];
             for (int j = 0; j < 5; j++) {
-                answers[j] = Answers.getAnswer(questions[j], values);
+                answers[j] = Answers.getAnswer(questions[j], values , Arrays.stream(categories).toList());
             }
             dataRow.createCell(4).setCellValue(String.join("\n", questions));
             dataRow.createCell(5).setCellValue(String.join("\n", answers));
@@ -65,14 +68,14 @@ public class ExcelSheet {
             dataRow.createCell(7).setCellValue("");
             dataRow.createCell(8).setCellValue("");
 
-            dataRow.createCell(9).setCellValue("60s");
-            dataRow.createCell(10).setCellValue("Easy");
+            dataRow.createCell(12).setCellValue("60s");
+            dataRow.createCell(13).setCellValue("Easy");
 
-            dataRow.createCell(11).setCellValue(imagePath);
+            dataRow.createCell(14).setCellValue(imagePath);
 
-            dataRow.createCell(12).setCellValue("2022.chinmay.chaudhari@ves.ac.in");
+            dataRow.createCell(15).setCellValue("2022.chinmay.chaudhari@ves.ac.in");
 
-            dataRow.createCell(13).setCellValue(110);
+            dataRow.createCell(16).setCellValue(110);
         }
 
         for (int i = 0; i < 27; i++) {
