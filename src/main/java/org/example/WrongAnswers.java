@@ -1,10 +1,12 @@
 package org.example;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class WrongAnswers {
-    public static Object[] generateWrongAnswers(String input) {
+    public static String[] generateWrongAnswers(String input) {
         if (isInteger(input)) {
             int number = Integer.parseInt(input);
             return generateRandomNumbersNear(number, 3);
@@ -21,10 +23,12 @@ public class WrongAnswers {
                     "1 cm on the y-axis represents 5 travelers"
             };
         }
-        else if (Arrays.asList("Car", "Bus", "Truck", "Motorcycle", "Bicycle", "Scooter").contains(input)) {
-            return getOtherVehicles(input, 3);
-        } else {
-            return new Object[0];
+        else {
+            return new String[]{
+                    "Car, Bus, Truck, Motorcycle",
+                    "Car, Bus, Truck, Scooter",
+                    "Bicycle, Bus, Truck, Motorcycle"
+            };
         }
     }
 
@@ -37,9 +41,9 @@ public class WrongAnswers {
         }
     }
 
-    private static Integer[] generateRandomNumbersNear(int number, int count) {
+    private static String[] generateRandomNumbersNear(int number, int count) {
         Random random = new Random();
-        Integer[] result = new Integer[count];
+        String[] result = new String[count];
         for (int i = 0; i < count; i++) {
             int randomOffset = random.nextInt(5) - 2;
             int generatedNumber = number + randomOffset;
@@ -50,18 +54,12 @@ public class WrongAnswers {
                 generatedNumber = number + randomOffset;
             }
 
-            result[i] = generatedNumber;
+            result[i] = String.valueOf(generatedNumber);
         }
         return result;
     }
 
-    private static String[] getOtherVehicles(String vehicle, int count) {
-        String[] allVehicles = {"Car", "Bus", "Truck", "Motorcycle", "Bicycle", "Scooter"};
-        return Arrays.stream(allVehicles)
-                .filter(v -> !v.equals(vehicle))
-                .limit(count)
-                .toArray(String[]::new);
-    }
+
 
     public static void main(String[] args) {
         System.out.println(Arrays.toString(generateWrongAnswers("This bar graph represents the number of travelers by different means.")));
