@@ -19,12 +19,19 @@ public class ExcelSheet {
     public static void generateDataAndCharts(Sheet combinedSheet) {
         Row headingRow = combinedSheet.createRow(0);
         headingRow.createCell(0).setCellValue("Sr. No");
-        headingRow.createCell(1).setCellValue("Image Path");
-
-        for (int j = 0; j < 5; j++) {
-            headingRow.createCell(2 + j * 2).setCellValue("Question " + (j + 1));
-            headingRow.createCell(3 + j * 2).setCellValue("Answer " + (j + 1));
-        }
+        headingRow.createCell(1).setCellValue("Question Type (Audio / Video / Image)");
+        headingRow.createCell(2).setCellValue("Answer Type");
+        headingRow.createCell(3).setCellValue("Topic Number");
+        headingRow.createCell(4).setCellValue("Questions");
+        headingRow.createCell(5).setCellValue("Correct Answer 1");
+        headingRow.createCell(6).setCellValue("Correct 2");
+        headingRow.createCell(7).setCellValue("Correct 3");
+        headingRow.createCell(8).setCellValue("Correct 4");
+        headingRow.createCell(9).setCellValue("Time in Seconds");
+        headingRow.createCell(10).setCellValue("Difficulty Level");
+        headingRow.createCell(11).setCellValue("Question (Audio / Video / Image)");
+        headingRow.createCell(12).setCellValue("Contributor's Registered mailId");
+        headingRow.createCell(13).setCellValue("Variation Number");
 
         for (int i = 0; i < 200; i++) {
             String chartTitle = "Chart " + (i + 1);
@@ -42,18 +49,33 @@ public class ExcelSheet {
 
             Row dataRow = combinedSheet.createRow(i + 1);
             dataRow.createCell(0).setCellValue(i + 1);
-            dataRow.createCell(1).setCellValue(imagePath);
+            dataRow.createCell(1).setCellValue("Image");
+            dataRow.createCell(2).setCellValue(1);
+            dataRow.createCell(3).setCellValue("09030201");
 
-            String[] questions = Questions.getRandomQuestions(13);
+            String[] questions = Arrays.copyOfRange(Questions.getRandomQuestions(13), 0, 5);
             String[] answers = new String[5];
             for (int j = 0; j < 5; j++) {
                 answers[j] = Answers.getAnswer(questions[j], values);
-                dataRow.createCell(2 + j * 2).setCellValue(questions[j]);
-                dataRow.createCell(3 + j * 2).setCellValue(answers[j]);
             }
+            dataRow.createCell(4).setCellValue(String.join("\n", questions));
+            dataRow.createCell(5).setCellValue(String.join("\n", answers));
+
+            dataRow.createCell(6).setCellValue("");
+            dataRow.createCell(7).setCellValue("");
+            dataRow.createCell(8).setCellValue("");
+
+            dataRow.createCell(9).setCellValue("60s");
+            dataRow.createCell(10).setCellValue("Easy");
+
+            dataRow.createCell(11).setCellValue(imagePath);
+
+            dataRow.createCell(12).setCellValue("2022.chinmay.chaudhari@ves.ac.in");
+
+            dataRow.createCell(13).setCellValue(110);
         }
 
-        for (int i = 0; i < 14; i++) {
+        for (int i = 0; i < 27; i++) {
             combinedSheet.autoSizeColumn(i);
         }
     }
@@ -64,7 +86,6 @@ public class ExcelSheet {
         Collections.shuffle(vehicleList);
         return vehicleList.subList(0, 4).toArray(new String[0]);
     }
-
 
     private static int[] generateRandomValues(int size) {
         int[] values = new int[size];
@@ -83,5 +104,10 @@ public class ExcelSheet {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private static String getTopicNumber(int index) {
+        String[] topicNumbers = {"09", "03", "02", "01"};
+        return topicNumbers[index % topicNumbers.length];
     }
 }
