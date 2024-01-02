@@ -3,11 +3,14 @@ package org.example;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.CategoryAxis;
 import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.axis.NumberTickUnit;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
+
+import java.awt.*;
 
 public class BarGraph {
     static JFreeChart createBarGraph(String chartTitle, String xAxisLabel, String yAxisLabel,
@@ -31,14 +34,36 @@ public class BarGraph {
                 true,
                 false);
         CategoryPlot plot = (CategoryPlot) barChart.getPlot();
+//        plot.setDomainCrosshairPaint(Color.black);
+        plot.setRangeGridlinePaint(Color.black);
+//        plot.setRangeCrosshairPaint(Color.black);
+//        plot.setRangeMinorGridlinePaint(Color.black);
         NumberAxis yAxis = (NumberAxis) plot.getRangeAxis();
+        CategoryAxis xAxis = (CategoryAxis) plot.getDomainAxis();
+        xAxis.setAxisLinePaint(Color.black);
+
+        plot.setBackgroundPaint(new Color(0xFFCEFDA0, true));
+
+
 
         yAxis.setRange(0, bound);
         yAxis.setTickMarksVisible(true);
         yAxis.setTickLabelsVisible(true);
-        yAxis.setMinorTickCount(5);
+        yAxis.setMinorTickCount(10);
+        yAxis.setTickUnit(new NumberTickUnit((double) bound / 10));
         yAxis.setMinorTickMarksVisible(true);
-        yAxis.setMinorTickMarkInsideLength(700.0f);
+        yAxis.setMinorTickMarkInsideLength(710.0f);
+        yAxis.setTickMarkPaint(Color.black);
+        yAxis.setAxisLinePaint(Color.black);
+        yAxis.setTickLabelPaint(Color.black);
+        yAxis.setTickMarkStroke(new BasicStroke(0.7f));
+
+        plot.setOutlinePaint(Color.black);
+        plot.setRangeGridlineStroke(new BasicStroke(1.0f));
+//        plot.setDomainGridlinesVisible(true);
+//        plot.setRangeMinorGridlinesVisible(true);
+//        plot.setRangeMinorGridlinesVisible(true);
+
         return barChart;
     }
 
