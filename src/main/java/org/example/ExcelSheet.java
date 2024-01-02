@@ -68,6 +68,21 @@ public class ExcelSheet {
             dataRow.createCell(7).setCellValue("");
             dataRow.createCell(8).setCellValue("");
 
+
+            String wrongAns1 = "";
+            String wrongAns2 = "";
+            String wrongAns3 = "";
+            for (int j = 0; j < 5; j++) {
+                String[] listOfWrongAnswers =  WrongAnswers.generateWrongAnswers(answers[j]);
+                wrongAns1 = wrongAns1 + listOfWrongAnswers[0] + "\n";
+                wrongAns2 = wrongAns2 + listOfWrongAnswers[1] + "\n";
+                wrongAns3 = wrongAns3 + listOfWrongAnswers[2] + "\n";
+            }
+            dataRow.createCell(9).setCellValue(wrongAns1);
+            dataRow.createCell(10).setCellValue(wrongAns2);
+            dataRow.createCell(11).setCellValue(wrongAns3);
+
+
             dataRow.createCell(12).setCellValue("60s");
             dataRow.createCell(13).setCellValue("Easy");
 
