@@ -44,18 +44,29 @@ public class WrongAnswers {
     private static String[] generateRandomNumbersNear(int number, int count) {
         Random random = new Random();
         String[] result = new String[count];
+
         for (int i = 0; i < count; i++) {
             int randomOffset = random.nextInt(5) - 2;
             int generatedNumber = number + randomOffset;
 
-            while (Arrays.asList(result).contains(generatedNumber)) {
+            while (contains(result, String.valueOf(generatedNumber))) {
                 randomOffset = random.nextInt(5) - 2;
                 generatedNumber = number + randomOffset;
             }
 
             result[i] = String.valueOf(generatedNumber);
         }
+
         return result;
+    }
+
+    private static boolean contains(String[] array, String value) {
+        for (String element : array) {
+            if (element != null && element.equals(value)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 
