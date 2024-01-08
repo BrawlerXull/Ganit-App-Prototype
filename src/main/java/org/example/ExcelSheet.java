@@ -1,11 +1,16 @@
 package org.example;
 
+import org.apache.commons.compress.utils.IOUtils;
+import org.apache.poi.ss.formula.functions.Column;
 import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFClientAnchor;
 import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -14,6 +19,33 @@ import java.util.Random;
 public class ExcelSheet {
     public static Sheet createNewSheet(Workbook workbook) {
         return workbook.createSheet("Combined Data and Images");
+    }
+
+    private static void addImageToSheet(Workbook workbook, Sheet sheet, String imagePath, int row, int col) {
+        try (InputStream inputStream = new FileInputStream(imagePath)) {
+            byte[] inputImageBytes = IOUtils.toByteArray(inputStream);
+            int inputImagePictureID = workbook.addPicture(inputImageBytes, Workbook.PICTURE_TYPE_PNG);
+            Drawing<?> drawing = sheet.createDrawingPatriarch();
+            ClientAnchor anchor = createClientAnchor(row + 1, col);
+            drawing.createPicture(anchor, inputImagePictureID);
+
+            Row currentRow = sheet.getRow(row + 1);
+            if (currentRow == null) {
+                currentRow = sheet.createRow(row + 1);
+            }
+            currentRow.setHeightInPoints(100);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static ClientAnchor createClientAnchor(int row, int col) {
+        ClientAnchor clientAnchor = new XSSFClientAnchor();
+        clientAnchor.setCol1(col);
+        clientAnchor.setCol2(col + 1);
+        clientAnchor.setRow1(row);
+        clientAnchor.setRow2(row + 1);
+        return clientAnchor;
     }
 
     public static void generateDataAndCharts(Sheet combinedSheet) {
@@ -32,12 +64,13 @@ public class ExcelSheet {
         headingRow.createCell(11).setCellValue("Wrong Answer 3");
         headingRow.createCell(12).setCellValue("Time in seconds");
         headingRow.createCell(13).setCellValue("Difficulty Level");
-        headingRow.createCell(14).setCellValue("Question (Audio / Video / Image)");
-        headingRow.createCell(15).setCellValue("Contributor's Registered mailId");
-        headingRow.createCell(16).setCellValue("Solution (Text Only)");
-        headingRow.createCell(17).setCellValue("Solution (Image/ Audio/ Video)");
-        headingRow.createCell(18).setCellValue("Variation Number");
-        headingRow.createCell(19).setCellValue("");
+        headingRow.createCell(14).setCellValue("Question (Image)");
+        headingRow.createCell(15).setCellValue("Question (Audio / Video / Image)");
+        headingRow.createCell(16).setCellValue("Contributor's Registered mailId");
+        headingRow.createCell(17).setCellValue("Solution (Text Only)");
+        headingRow.createCell(18).setCellValue("Solution (Image/ Audio/ Video)");
+        headingRow.createCell(19).setCellValue("Variation Number");
+        headingRow.createCell(20).setCellValue("");
 
 
 
@@ -62,7 +95,7 @@ public class ExcelSheet {
                 dataRow.createCell(2).setCellValue(1);
                 dataRow.createCell(3).setCellValue("09030201");
 
-                String[] questions = Arrays.copyOfRange(Questions.getRandomQuestions(13), 0, 1); // Get only 1 question
+                String[] questions = Arrays.copyOfRange(Questions.getRandomQuestions(13), 0, 1);
                 String[] answers = new String[5];
 
                 answers[0] = Answers.getAnswer(questions[0], values, Arrays.stream(categories).toList());
@@ -89,25 +122,35 @@ public class ExcelSheet {
                 dataRow.createCell(12).setCellValue("60");
                 dataRow.createCell(13).setCellValue(4);
                 if(j == 0){
-                    dataRow.createCell(14).setCellValue(imagePath);
+                    dataRow.createCell(15).setCellValue(imagePath);
+                }
+                if (j == 0) {
+                    addImageToSheet(combinedSheet.getWorkbook(), combinedSheet, imagePath, (i * 5) + j , 14);
                 }
 
 
-                dataRow.createCell(15).setCellValue("2022.chinmay.chaudhari@ves.ac.in");
 
-                dataRow.createCell(18).setCellValue(110);
+
+                dataRow.createCell(16).setCellValue("2022.chinmay.chaudhari@ves.ac.in");
+
+                dataRow.createCell(19).setCellValue(110);
 
                 if( j % 5 == 0){
-                    dataRow.createCell(19).setCellValue(1);
+                    dataRow.createCell(20).setCellValue(1);
                 }else{
-                    dataRow.createCell(19).setCellValue(2);
+                    dataRow.createCell(20).setCellValue(2);
                 }
             }
 
         }
         for (int i = 0; i < 16; i++) {
-            combinedSheet.autoSizeColumn(i);
+            if (i != 14) {
+                combinedSheet.autoSizeColumn(i);
+            }
         }
+
+        combinedSheet.setColumnWidth(14, 10000);
+
         Row lastRow = combinedSheet.createRow(1001);
         lastRow.createCell(0).setCellValue("****");
     }
