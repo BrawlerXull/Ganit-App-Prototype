@@ -48,7 +48,6 @@ public class WrongAnswers {
             int randomOffset = random.nextInt(5) - 2;
             int generatedNumber = number + randomOffset;
 
-            // Check if the generated number already exists in the array
             while (Arrays.asList(result).contains(generatedNumber)) {
                 randomOffset = random.nextInt(5) - 2;
                 generatedNumber = number + randomOffset;
