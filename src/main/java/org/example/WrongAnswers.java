@@ -22,6 +22,36 @@ public class WrongAnswers {
                     "1 cm on the y-axis represents 10 travelers",
                     "1 cm on the y-axis represents 5 travelers"
             };
+        } else if (input.equals("Bus")) {
+            return new String[]{
+                    "Car",
+                    "Motorcycle",
+                    "Bicycle"
+            };
+        } else if (input.equals("Truck")) {
+            return new String[]{
+                    "Car",
+                    "Motorcycle",
+                    "Bicycle"
+            };
+        } else if (input.equals("Motorcycle")) {
+            return new String[]{
+                    "Car",
+                    "Bus",
+                    "Scooter"
+            };
+        } else if (input.equals("Bicycle")) {
+            return new String[]{
+                    "Car",
+                    "Bus",
+                    "Scooter"
+            };
+        } else if (input.equals("Scooter")) {
+            return new String[]{
+                    "Car",
+                    "Bus",
+                    "Truck"
+            };
         }
         else {
             return new String[]{
