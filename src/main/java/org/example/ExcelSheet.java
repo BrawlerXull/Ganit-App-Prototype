@@ -84,7 +84,9 @@ public class ExcelSheet {
 
             JFreeChart barChart = BarGraph.createBarGraph(chartTitle, xAxisLabel, yAxisLabel, categories, values);
 
-            String imagePath = "/Users/chinmay/Documents/ganit/ganitt/img/chart_" + (i + 1) + ".png";
+            String projectPath = System.getProperty("user.dir");
+
+            String imagePath = projectPath + File.separator + "img" + File.separator + "chart_" + (i + 1) + ".png";
 
             saveChartAsImage(barChart, imagePath);
 
