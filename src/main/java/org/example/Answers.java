@@ -129,9 +129,9 @@ public class Answers {
     }
 
     private static int calculateTotalSecondThirdMostUsed(int[] values, List<String> vehicleList) {
-        int secondMostIndex = findSecondMostUsedIndex(values);
-        int thirdMostIndex = findThirdMostUsedIndex(values);
-        return values[secondMostIndex] + values[thirdMostIndex];
+        Arrays.sort(values);
+
+        return values[2] + values[1];
     }
 
     private static int findMostUsedIndex(int[] values) {
@@ -154,26 +154,4 @@ public class Answers {
         return minIndex;
     }
 
-    private static int findSecondMostUsedIndex(int[] values) {
-        int mostIndex = findMostUsedIndex(values);
-        int secondMostIndex = 0;
-        for (int i = 1; i < values.length; i++) {
-            if (i != mostIndex && values[i] > values[secondMostIndex]) {
-                secondMostIndex = i;
-            }
-        }
-        return secondMostIndex;
-    }
-
-    private static int findThirdMostUsedIndex(int[] values) {
-        int mostIndex = findMostUsedIndex(values);
-        int secondMostIndex = findSecondMostUsedIndex(values);
-        int thirdMostIndex = 0;
-        for (int i = 1; i < values.length; i++) {
-            if (i != mostIndex && i != secondMostIndex && values[i] > values[thirdMostIndex]) {
-                thirdMostIndex = i;
-            }
-        }
-        return thirdMostIndex;
-    }
 }
