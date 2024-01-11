@@ -1,15 +1,13 @@
 package org.example;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 
 public class WrongAnswers {
     public static String[] generateWrongAnswers(String input) {
         if (isInteger(input)) {
             int number = Integer.parseInt(input);
-            return generateRandomNumbersNear(number, 3);
+            return generateRandomNumbersNear(number);
         } else if (input.equals("This bar graph represents the number of travelers by different means.")) {
             return new String[]{
                     "This bar graph represents the number of students by different means.",
@@ -22,7 +20,8 @@ public class WrongAnswers {
                     "1 cm on the y-axis represents 10 travelers",
                     "1 cm on the y-axis represents 5 travelers"
             };
-        } else if (input.equals("Bus")) {
+        }
+        else if (input.equals("Bus")) {
             return new String[]{
                     "Car",
                     "Motorcycle",
@@ -53,6 +52,13 @@ public class WrongAnswers {
                     "Truck"
             };
         }
+        else if (input.equals("Car")) {
+            return new String[]{
+                    "Bus",
+                    "Scooter",
+                    "Truck"
+            };
+        }
         else {
             return new String[]{
                     "Car, Bus, Truck, Motorcycle",
@@ -71,24 +77,26 @@ public class WrongAnswers {
         }
     }
 
-    private static String[] generateRandomNumbersNear(int number, int count) {
+    private static String[] generateRandomNumbersNear(int number) {
         Random random = new Random();
-        String[] result = new String[count];
+        String[] result = new String[3];
 
-        for (int i = 0; i < count; i++) {
-            int randomOffset = random.nextInt(5) - 2;
-            int generatedNumber = number + randomOffset;
+        for (int i = 0; i < 3; i++) {
+            int randomOffset;
+            int generatedNumber;
 
-            while (contains(result, String.valueOf(generatedNumber))) {
+            do {
                 randomOffset = random.nextInt(5) - 2;
                 generatedNumber = number + randomOffset;
-            }
+            } while (generatedNumber == number || contains(result, String.valueOf(generatedNumber)));
 
             result[i] = String.valueOf(generatedNumber);
         }
 
         return result;
     }
+
+
 
     private static boolean contains(String[] array, String value) {
         for (String element : array) {
