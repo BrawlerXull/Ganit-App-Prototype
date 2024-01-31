@@ -73,7 +73,7 @@ public class ExcelSheet {
 
 
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 10; i++) {
             String chartTitle = "Chart " + (i + 1);
             String xAxisLabel = "Category";
             String yAxisLabel = "Value";
@@ -100,9 +100,14 @@ public class ExcelSheet {
                 String[] answers = new String[5];
 
                 answers[0] = Answers.getAnswer(questions[0], values, Arrays.stream(categories).toList());
+
+                String solution = Solution.getSolution(questions[0],values,Arrays.stream(categories).toList());
+                dataRow.createCell(17).setCellValue(solution);
+
+
                 String marathiQuestion = MarathiQuestion.translateToMarathi(questions[0]);
-                System.out.println(questions[0]);
-                System.out.println(marathiQuestion);
+//                System.out.println(questions[0]);
+//                System.out.println(marathiQuestion);
                 dataRow.createCell(4).setCellValue(marathiQuestion);
 
                 String marathiAnswer = MarathiAnswers.getMarathiAnswers(answers[0]);
