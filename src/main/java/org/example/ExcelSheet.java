@@ -1,7 +1,6 @@
 package org.example;
 
 import org.apache.commons.compress.utils.IOUtils;
-import org.apache.poi.ss.formula.functions.Column;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFClientAnchor;
 import org.jfree.chart.ChartUtils;
@@ -74,7 +73,7 @@ public class ExcelSheet {
 
 
 
-        for (int i = 0; i < 200; i++) {
+        for (int i = 0; i < 3; i++) {
             String chartTitle = "Chart " + (i + 1);
             String xAxisLabel = "Category";
             String yAxisLabel = "Value";
@@ -101,8 +100,13 @@ public class ExcelSheet {
                 String[] answers = new String[5];
 
                 answers[0] = Answers.getAnswer(questions[0], values, Arrays.stream(categories).toList());
-                dataRow.createCell(4).setCellValue(questions[0]);
-                dataRow.createCell(5).setCellValue(answers[0]);
+                String marathiQuestion = MarathiQuestion.translateToMarathi(questions[0]);
+                System.out.println(questions[0]);
+                System.out.println(marathiQuestion);
+                dataRow.createCell(4).setCellValue(marathiQuestion);
+
+                String marathiAnswer = MarathiAnswers.getMarathiAnswers(answers[0]);
+                dataRow.createCell(5).setCellValue(marathiAnswer);
 
                 dataRow.createCell(6).setCellValue("");
                 dataRow.createCell(7).setCellValue("");
@@ -113,9 +117,9 @@ public class ExcelSheet {
                 String wrongAns3 = "";
 
                 String[] listOfWrongAnswers = WrongAnswers.generateWrongAnswers(answers[0]);
-                wrongAns1 = listOfWrongAnswers[0];
-                wrongAns2 = listOfWrongAnswers[1];
-                wrongAns3 = listOfWrongAnswers[2];
+                wrongAns1 = MarathiWrongAnswers.getMarathiWrongAnswers(listOfWrongAnswers[0]);
+                wrongAns2 = MarathiWrongAnswers.getMarathiWrongAnswers(listOfWrongAnswers[1]);
+                wrongAns3 = MarathiWrongAnswers.getMarathiWrongAnswers(listOfWrongAnswers[2]);
 
                 dataRow.createCell(9).setCellValue(wrongAns1);
                 dataRow.createCell(10).setCellValue(wrongAns2);

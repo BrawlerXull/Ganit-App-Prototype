@@ -9,33 +9,34 @@ import static org.example.BarGraph.getBound;
 public class Answers {
     public static String getAnswer(String question, int[] values, List<String> vehicleList) {
         return switch (question) {
-            case "This bar graph is for" -> "This bar graph represents the number of travelers by different means.";
-            case "Scale used in this graph is" -> {
+            case "This bar graph is for?" -> "This bar graph represents the number of travelers by different means.";
+            case "Scale used in this graph is?" -> {
                 int maxElement = findMax(values);
                 int bound = getBound(maxElement);
 
                 if (bound > 0) {
-                    yield String.format("1 cm on the y-axis represents %d travelers.", bound / 10);
+                    yield String.format("$1$ unit $= %d$ vehicles.<br>#$1$ एकक $= %d$ वाहने <br>", bound / 10, bound);
                 } else {
                     yield "Unable to determine the scale for the given data.";
                 }
             }
 
-            case "How much is the total of travellers for top 3 values" -> {
+
+            case "How much is the total of travellers for top 3 values?" -> {
                 int totalTop3Values = calculateTotalTop3Values(values);
                 yield String.valueOf(totalTop3Values);
             }
-            case "Which vehicle is used least for travelling", "Which vehicle is used least?" -> {
+            case "Which vehicle is used least for travelling?", "Which vehicle is used least?" -> {
                 yield findLeastUsedVehicle(values, vehicleList);
             }
-            case "Which vehicle is used most for travelling", "Which vehicle is used most?" -> {
+            case "Which vehicle is used most for travelling?", "Which vehicle is used most?" -> {
                 yield findMostUsedVehicle(values, vehicleList);
             }
             case "How many different vehicles do travellers use?" -> {
                 int numberOfDifferentVehicles = countDifferentVehicles(values);
                 yield String.valueOf(numberOfDifferentVehicles);
             }
-            case "Which are the different vehicles used by travellers" -> {
+            case "Which are the different vehicles used by travellers?" -> {
                 yield listDifferentVehicles(values, vehicleList);
             }
             case "How much is the difference in the number of travellers between the vehicle used most and least?" -> {
@@ -50,7 +51,7 @@ public class Answers {
                 int totalTravelers = calculateTotalTravelers(values);
                 yield String.valueOf(totalTravelers);
             }
-            case "How many are the total of travellers travelling by the second and third most used vehicle." -> {
+            case "How many are the total of travellers travelling by the second and third most used vehicle?" -> {
                 int totalSecondThirdMostUsed = calculateTotalSecondThirdMostUsed(values, vehicleList);
                 yield String.valueOf(totalSecondThirdMostUsed);
             }

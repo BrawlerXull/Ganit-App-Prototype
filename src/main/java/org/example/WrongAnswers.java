@@ -14,11 +14,11 @@ public class WrongAnswers {
                     "This bar graph represents the number of teachers by different means.",
                     "This bar graph represents the number of principal by different means."
             };
-        } else if (input.contains("1 cm on the y-axis represents")) {
+        } else if (input.contains("$1$ unit $=")) {
             return new String[]{
-                    "1 cm on the y-axis represents 9 travelers",
-                    "1 cm on the y-axis represents 10 travelers",
-                    "1 cm on the y-axis represents 5 travelers"
+                    "$1$ unit $= 25$ vehicles.<br>#$1$ एकक $= 25$ वाहने <br>",
+                    "$1$ unit $= 250$ vehicles.<br>#$1$ एकक $= 250$ वाहने <br>",
+                    "$1$ unit $= 150$ vehicles.<br>#$1$ एकक $= 150$ वाहने <br>"
             };
         }
         else if (input.equals("Bus")) {
