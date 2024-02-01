@@ -15,7 +15,7 @@ public class Answers {
                 int bound = getBound(maxElement);
 
                 if (bound > 0) {
-                    yield String.format("$1$ unit $= %d$ vehicles.<br>#$1$ एकक $= %d$ वाहने <br>", bound / 10, bound);
+                    yield String.format("$1$ unit $= %d$ vehicles.<br>#$1$ एकक $= %d$ वाहने <br>",bound / 10 , bound / 10);
                 } else {
                     yield "Unable to determine the scale for the given data.";
                 }
