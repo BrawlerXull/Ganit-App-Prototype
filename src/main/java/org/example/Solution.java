@@ -100,6 +100,34 @@ public class Solution {
                 yield "As mentioned in the problem statement, the bar graph shows the number of travellers, travelling by different vehicles.<br>#प्रश्नात दिल्यानुसार वेगवेगळ्या वाहनातून प्रवास करणाऱ्या प्रवाशांची संख्या दाखविण्यासाठी हे स्तंभालेख आहे.<br>";
             }
 
+            case "How much is the total of travellers for top 3 values?" -> {
+                int[] sortedValues = Arrays.copyOf(values, values.length);
+                Arrays.sort(sortedValues);
+
+                int totalTop3Values = sortedValues[sortedValues.length - 1] +
+                        sortedValues[sortedValues.length - 2] +
+                        sortedValues[sortedValues.length - 3];
+                int l = sortedValues.length;
+
+                int sum = sortedValues[l - 1] + sortedValues[l - 2] + sortedValues[l - 3];
+                yield String.format("From the given graph we can see that<br>" +
+                                "No. of travellers travelling by most used vehicle is $= %d$  <br>" +
+                                "No. of travellers travelling by second most used vehicle is $= %d$  <br>" +
+                                "No. of travellers travelling by third most used vehicle is $= %d$  <br>" +
+                                "By taking the addition of these three numbers we get  <br>" +
+                                "$%d + %d + %d = %s$  is the answer.<br>" +
+                                "#दिलेल्या स्तंभालेखानुसार <br>" +
+                                "सर्वात जास्त वापरल्या जाणाऱ्या वाहनासाठी प्रवाशांची संख्या $= %s$<br>" +
+                                "दोन क्रमांकाचे सर्वात जास्त वापरल्या जाणाऱ्या वाहनासाठी प्रवाशांची संख्या $= %s$<br>" +
+                                "तीन क्रमांकाचे सर्वात जास्त वापरल्या जाणाऱ्या वाहनासाठी प्रवाशांची संख्या $= %s$<br>" +
+                                "या दोन्ही प्रवाशांच्या संख्यांची बेरीज  घेऊन आपल्याला <br>" +
+                                "$%s + %s + %s = %s$  हे उत्तर मिळते.<br>",
+                        sortedValues[l - 1], sortedValues[l - 2], sortedValues[l - 3] ,sortedValues[l - 1], sortedValues[l - 2], sortedValues[l - 3] , sum,
+                        sortedValues[l - 1], sortedValues[l - 2], sortedValues[l - 3] ,sortedValues[l - 1], sortedValues[l - 2], sortedValues[l - 3] , sum
+                );
+            }
+
+
 
 
             default ->
