@@ -14,7 +14,12 @@ public class MarathiAnswers {
             marathiAnswer = "$1$ cm on the y-axis represents " + variedNumber +
                     " travelers.<br>#$1$ सी.एम. य-अक्षावर " + variedNumber + " प्रवाशींची दर्शवणार.<br>";
         } else {
-            marathiAnswer = getSingleVehicleTranslation(answer);
+            try {
+                int intValue = Integer.parseInt(answer.trim());
+                return "$" + answer + "$ <br>";
+            } catch (NumberFormatException e) {
+                marathiAnswer = getSingleVehicleTranslation(answer);
+            }
         }
 
 //        System.out.println(marathiAnswer);
