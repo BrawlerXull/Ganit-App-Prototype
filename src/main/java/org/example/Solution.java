@@ -127,6 +127,27 @@ public class Solution {
                 );
             }
 
+            case "How many are the total travellers travelling by the vehicles used most and least?" -> {
+                int maxValue = Arrays.stream(values).max().orElse(0);
+                int minValue = Arrays.stream(values).min().orElse(0);
+                int sum = maxValue + minValue;
+
+                yield String.format("Ans: $%d$ <br>" +
+                                "From the given graph we can see that<br>" +
+                                "No. of travellers using the vehicle most $= %d$<br>" +
+                                "No. of travellers using the vehicle least $= %d$<br>" +
+                                "By taking the sum of these two numbers we get  <br>" +
+                                "$%d + %d = %d$  is the answer.<br>" +
+                                "#उत्तर : $%d$<br>" +
+                                "दिलेल्या स्तंभालेखानुसार <br>" +
+                                "सगळ्यात जास्त वापरल्या जाणाऱ्या वाहनासाठी प्रवाशांची संख्या $= %d$<br>" +
+                                "सगळ्यात कमी वापरलेल्या जाणाऱ्या वाहनासाठी प्रवाशांची संख्या $= %d$<br>" +
+                                "या दोन्ही प्रवाशांच्या संख्यांची वेगवेगळी बेरीज घेऊन आपल्याला <br>" +
+                                "$%d + %d = %d$  हे उत्तर मिळते.<br>",
+                        sum, maxValue, minValue, maxValue, minValue, sum, sum,
+                        maxValue, minValue, maxValue, minValue, sum);
+            }
+
 
 
 
