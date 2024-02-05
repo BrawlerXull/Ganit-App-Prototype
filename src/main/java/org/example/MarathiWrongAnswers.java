@@ -6,7 +6,12 @@ public class MarathiWrongAnswers {
 
     public static String getMarathiWrongAnswers(String input) {
         String wrongAnswers = "";
-        wrongAnswers = translateToMarathi(input);
+        try {
+            int intValue = Integer.parseInt(input.trim());
+            return "$" + input + "$ <br>";
+        } catch (NumberFormatException e) {
+            wrongAnswers = translateToMarathi(input);
+        }
 
         return wrongAnswers;
     }
