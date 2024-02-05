@@ -10,7 +10,15 @@ public class MarathiWrongAnswers {
             int intValue = Integer.parseInt(input.trim());
             return "$" + input + "$ <br>";
         } catch (NumberFormatException e) {
-            wrongAnswers = translateToMarathi(input);
+            if(input.contains(",")){
+
+                String[] vehiclesArray = input.split(", ");
+                wrongAnswers =input + "<br>"+"#" + getOnlySingleVehicleTranslation(vehiclesArray[0])+", "+getOnlySingleVehicleTranslation(vehiclesArray[1])+", " +getOnlySingleVehicleTranslation(vehiclesArray[2])+", " + getOnlySingleVehicleTranslation(vehiclesArray[3])+ "<br>";
+
+            }else{
+                wrongAnswers = translateToMarathi(input);
+            }
+
         }
 
         return wrongAnswers;
@@ -56,5 +64,17 @@ public class MarathiWrongAnswers {
                     answer;
         };
     }
+    private static String getOnlySingleVehicleTranslation(String vehicle) {
+        return switch (vehicle.trim().toLowerCase()) {
+            case "scooter" -> "दुचाकी";
+            case "car" -> "कार";
+            case "motorcycle" -> "मोटरसायकल";
+            case "bicycle" -> "सायकल";
+            case "bus" -> "बस";
+            case "truck" -> "ट्रक";
+            default -> vehicle;
+        };
+    }
+
 
 }
