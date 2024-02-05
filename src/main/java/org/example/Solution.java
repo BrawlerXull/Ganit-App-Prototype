@@ -22,7 +22,7 @@ public class Solution {
                                     "सगळ्यात कमी वापरलेल्या वाहनासाठी प्रवाशांची संख्या $= %s$ आहे, हे उत्तर.<br>",
                             answer, answer);
             case "How many are the total of travellers travelling by the second and third most used vehicle?" -> {
-                System.out.println("ok");
+//                System.out.println("ok");
                 int[] sortedValues = Arrays.copyOf(values, values.length);
                 Arrays.sort(sortedValues);
 
@@ -79,13 +79,13 @@ public class Solution {
                 int minValue = Arrays.stream(values).min().orElse(0);
                 int difference = maxValue - minValue;
 
-                yield String.format("Ans: %d <br>" +
+                yield String.format("Ans: $%d$ <br>" +
                                 "From the given graph we can see that<br>" +
                                 "No. of travellers using the vehicle most $= %d$<br>" +
                                 "No. of travellers using the vehicle least $= %d$<br>" +
                                 "By taking the difference of these two numbers we get  <br>" +
                                 "$%d - %d = %d$  is the answer.<br>" +
-                                "#उत्तर : %d<br>" +
+                                "#उत्तर : $%d$<br>" +
                                 "दिलेल्या स्तंभालेखानुसार <br>" +
                                 "सगळ्यात जास्त वापरल्या जाणाऱ्या वाहनासाठी प्रवाशांची संख्या $= %d$<br>" +
                                 "सगळ्यात कमी वापरलेल्या जाणाऱ्या वाहनासाठी प्रवाशांची संख्या $= %d$<br>" +

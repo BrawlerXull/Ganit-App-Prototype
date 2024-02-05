@@ -89,6 +89,12 @@ public class ExcelSheet {
 
             saveChartAsImage(barChart, imagePath);
 
+            String[] questions = Arrays.copyOfRange(Questions.getRandomQuestions(13), 0, 5);
+
+            System.out.println(Arrays.toString(questions));
+
+            String[] answers = new String[5];
+
             for (int j = 0; j < 5; j++) {
                 Row dataRow = combinedSheet.createRow((i * 5) + j + 1);
                 dataRow.createCell(0).setCellValue((i * 5) + j + 1);
@@ -96,21 +102,19 @@ public class ExcelSheet {
                 dataRow.createCell(2).setCellValue(1);
                 dataRow.createCell(3).setCellValue("09030201");
 
-                String[] questions = Arrays.copyOfRange(Questions.getRandomQuestions(13), 0, 1);
-                String[] answers = new String[5];
 
-                answers[0] = Answers.getAnswer(questions[0], values, Arrays.stream(categories).toList());
+                answers[j] = Answers.getAnswer(questions[j], values, Arrays.stream(categories).toList());
 
                 String solution = Solution.getSolution(questions[0],values,Arrays.stream(categories).toList());
                 dataRow.createCell(17).setCellValue(solution);
 
 
-                String marathiQuestion = MarathiQuestion.translateToMarathi(questions[0]);
+                String marathiQuestion = MarathiQuestion.translateToMarathi(questions[j]);
 //                System.out.println(questions[0]);
 //                System.out.println(marathiQuestion);
                 dataRow.createCell(4).setCellValue(marathiQuestion);
 
-                String marathiAnswer = MarathiAnswers.getMarathiAnswers(answers[0]);
+                String marathiAnswer = MarathiAnswers.getMarathiAnswers(answers[j]);
                 dataRow.createCell(5).setCellValue(marathiAnswer);
 
                 dataRow.createCell(6).setCellValue("");
@@ -121,7 +125,7 @@ public class ExcelSheet {
                 String wrongAns2 = "";
                 String wrongAns3 = "";
 
-                String[] listOfWrongAnswers = WrongAnswers.generateWrongAnswers(answers[0]);
+                String[] listOfWrongAnswers = WrongAnswers.generateWrongAnswers(answers[j]);
                 wrongAns1 = MarathiWrongAnswers.getMarathiWrongAnswers(listOfWrongAnswers[0]);
                 wrongAns2 = MarathiWrongAnswers.getMarathiWrongAnswers(listOfWrongAnswers[1]);
                 wrongAns3 = MarathiWrongAnswers.getMarathiWrongAnswers(listOfWrongAnswers[2]);

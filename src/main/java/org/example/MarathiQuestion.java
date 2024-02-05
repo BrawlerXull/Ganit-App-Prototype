@@ -5,8 +5,8 @@ public class MarathiQuestion {
        return switch (englishText) {
            case "This bar graph is for?" -> "This bar graph is for?<br>#हा स्तंभालेख . . . . . साठी आहे. <br>";
            case "Scale used in this graph is?" -> "Scale used in this graph is?<br>#या स्तंभालेखासाठी वापरलेले प्रमाण . . . .  आहे.<br>";
-           case "How much is the total of travellers for top 3 values?" ->
-                   "How much is the total of travellers for top 3 values?<br>#उच्च 3 मूल्यांसाठी प्रवाशांची एकूण संख्या किती?<br>";
+           case "How much is the total of travellers for top $3$ values?" ->
+                   "How much is the total of travellers for top $3$ values?<br>#उच्च $3$ मूल्यांसाठी प्रवाशांची एकूण संख्या किती?<br>";
            case "Which vehicle is used least for travelling?" ->
                    "Which vehicle is used least for travelling?<br>#प्रवासासाठी सर्वात कमी वापर कोणत्या वाहनाचा होतो?<br>";
            case "Which vehicle is used most for travelling?" ->
