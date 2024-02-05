@@ -14,13 +14,13 @@ public class Solution {
                                     "No. of travellers using the vehicle most is $= %s$ is the answer.<br>" +
                                     "#दिलेल्या स्तंभालेखानुसार <br>" +
                                     "सगळ्यात जास्त वापरल्या जाणाऱ्या वाहनासाठी प्रवाशांची संख्या $= %s$ आहे, हे उत्तर.<br>",
-                            answer, answer);
+                            answer, getSingleVehicleTranslation(answer));
             case "Which vehicle is used least for travelling?", "Which vehicle is used least?" ->
                     String.format("From the given graph we can see that<br>" +
                                     "No. of travellers using the least used vehicle is $= %s$ is the answer.<br>" +
                                     "#दिलेल्या स्तंभालेखानुसार <br>" +
                                     "सगळ्यात कमी वापरलेल्या वाहनासाठी प्रवाशांची संख्या $= %s$ आहे, हे उत्तर.<br>",
-                            answer, answer);
+                            answer, getSingleVehicleTranslation(answer));
             case "How many are the total of travellers travelling by the second and third most used vehicle?" -> {
 //                System.out.println("ok");
                 int[] sortedValues = Arrays.copyOf(values, values.length);
@@ -104,6 +104,17 @@ public class Solution {
 
             default ->
                     "";
+        };
+    }
+    private static String getSingleVehicleTranslation(String vehicle) {
+        return switch (vehicle.trim().toLowerCase()) {
+            case "scooter" -> "दुचाकी";
+            case "car" -> "कार";
+            case "motorcycle" -> "मोटरसायकल";
+            case "bicycle" -> "सायकल";
+            case "bus" -> "बस";
+            case "truck" -> "ट्रक";
+            default -> vehicle;
         };
     }
 }
