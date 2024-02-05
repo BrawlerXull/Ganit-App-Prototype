@@ -105,7 +105,7 @@ public class ExcelSheet {
 
                 answers[j] = Answers.getAnswer(questions[j], values, Arrays.stream(categories).toList());
 
-                String solution = Solution.getSolution(questions[0],values,Arrays.stream(categories).toList());
+                String solution = Solution.getSolution(questions[j],values,Arrays.stream(categories).toList());
                 dataRow.createCell(17).setCellValue(solution);
 
 
