@@ -13,6 +13,9 @@ public class MarathiAnswers {
 
             marathiAnswer = "$1$ cm on the y-axis represents " + variedNumber +
                     " travelers.<br>#$1$ सी.एम. य-अक्षावर " + variedNumber + " प्रवाशींची दर्शवणार.<br>";
+        } else if (answer.contains(",")) {
+            String[] vehiclesArray = answer.split(", ");
+            marathiAnswer =answer + "<br>"+"#" +getOnlySingleVehicleTranslation(vehiclesArray[0])+", "+getOnlySingleVehicleTranslation(vehiclesArray[1])+", " +getOnlySingleVehicleTranslation(vehiclesArray[2])+", " + getOnlySingleVehicleTranslation(vehiclesArray[3])+ "<br>";
         } else {
             try {
                 int intValue = Integer.parseInt(answer.trim());
@@ -22,7 +25,6 @@ public class MarathiAnswers {
             }
         }
 
-//        System.out.println(marathiAnswer);
         return marathiAnswer;
     }
 
@@ -37,5 +39,17 @@ public class MarathiAnswers {
             default -> vehicle;
         };
     }
+    private static String getOnlySingleVehicleTranslation(String vehicle) {
+        return switch (vehicle.trim().toLowerCase()) {
+            case "scooter" -> "दुचाकी";
+            case "car" -> "कार";
+            case "motorcycle" -> "मोटरसायकल";
+            case "bicycle" -> "सायकल";
+            case "bus" -> "बस";
+            case "truck" -> "ट्रक";
+            default -> vehicle;
+        };
+    }
+
 
 }
