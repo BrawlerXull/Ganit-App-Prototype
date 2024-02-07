@@ -109,11 +109,11 @@ public class WrongAnswers {
 
 
 
-    public static void main(String[] args) {
-        System.out.println(Arrays.toString(generateWrongAnswers("This bar graph represents the number of travelers by different means.")));
-        System.out.println(Arrays.toString(generateWrongAnswers("10")));
-        System.out.println(Arrays.toString(generateWrongAnswers("Car")));
-
-
-    }
+//    public static void main(String[] args) {
+//        System.out.println(Arrays.toString(generateWrongAnswers("This bar graph represents the number of travelers by different means.")));
+//        System.out.println(Arrays.toString(generateWrongAnswers("10")));
+//        System.out.println(Arrays.toString(generateWrongAnswers("Car")));
+//
+//
+//    }
 }
