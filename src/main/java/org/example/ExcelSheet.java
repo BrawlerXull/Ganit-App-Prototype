@@ -76,7 +76,7 @@ public class ExcelSheet {
         for (int i = 0; i < 200; i++) {
             String chartTitle = "Chart " + (i + 1);
             String xAxisLabel = "Category";
-            String yAxisLabel = "Value";
+            String yAxisLabel = "Travelers / प्रवाशी";
 
             String[] categories = generateRandomCategories();
             int[] values = generateRandomValues(categories.length);
