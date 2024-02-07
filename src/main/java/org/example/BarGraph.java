@@ -13,6 +13,18 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import java.awt.*;
 
 public class BarGraph {
+
+    private static String getOnlySingleVehicleTranslation(String vehicle) {
+        return switch (vehicle.trim().toLowerCase()) {
+            case "scooter" -> "Scooter/दुचाकी";
+            case "car" -> "Car/कार";
+            case "motorcycle" -> "Motorcycle/मोटरसायकल";
+            case "bicycle" -> "Bicycle/सायकल";
+            case "bus" -> "Bus/बस";
+            case "truck" -> "Truck/ट्रक";
+            default -> vehicle;
+        };
+    }
     static JFreeChart createBarGraph(String chartTitle, String xAxisLabel, String yAxisLabel,
                                      String[] categories, int[] values) {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
@@ -21,7 +33,7 @@ public class BarGraph {
         values = getNewValues(bound , values);
 
         for (int i = 0; i < categories.length; i++) {
-            dataset.addValue(values[i], "Travelers", categories[i] + " " + values[i]);
+            dataset.addValue(values[i], "On Y-axis: 1 unit ="+ bound / 10 + "Travelers", getOnlySingleVehicleTranslation(categories[i]));
         }
 
         JFreeChart barChart = ChartFactory.createBarChart(
