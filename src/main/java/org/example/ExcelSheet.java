@@ -74,7 +74,7 @@ public class ExcelSheet {
 
 
         for (int i = 0; i < 200; i++) {
-            String chartTitle = "Chart " + (i + 1);
+            String chartTitle = "Bar Graph / चित्रालेख";
             String xAxisLabel = "Category";
             String yAxisLabel = "Travelers / प्रवाशी";
 
