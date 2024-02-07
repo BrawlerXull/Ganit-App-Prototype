@@ -100,13 +100,13 @@ public class Answers {
     }
 
     private static String listDifferentVehicles(int[] values, List<String> vehicleList) {
+        System.out.println(vehicleList.toArray().length + "list" + vehicleList);
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < values.length; i++) {
-            if (values[i] > 0) {
-                result.append(vehicleList.get(i)).append(", ");
-            }
+                result.append(vehicleList.get(i)).append(" , ");
         }
-        return result.toString().replaceAll(", $", "");
+        System.out.println(result + "result");
+        return result.toString();
     }
 
     private static int calculateDifferenceMostLeast(int[] values, List<String> vehicleList) {

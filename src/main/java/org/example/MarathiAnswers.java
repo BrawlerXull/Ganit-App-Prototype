@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.Arrays;
+
 public class MarathiAnswers {
     public static String getMarathiAnswers(String answer) {
         String marathiAnswer;
@@ -14,7 +16,9 @@ public class MarathiAnswers {
             marathiAnswer = "$1$ cm on the y-axis represents " + variedNumber +
                     " travelers.<br>#$1$ सी.एम. य-अक्षावर " + variedNumber + " प्रवाशींची दर्शवणार.<br>";
         } else if (answer.contains(",")) {
-            String[] vehiclesArray = answer.split(", ");
+            String[] vehiclesArray = answer.split(",");
+            System.out.println(answer + "answer");
+            System.out.println(Arrays.toString(vehiclesArray) + "arrayV");
             marathiAnswer =answer + "<br>"+"#" +getOnlySingleVehicleTranslation(vehiclesArray[0])+", "+getOnlySingleVehicleTranslation(vehiclesArray[1])+", " +getOnlySingleVehicleTranslation(vehiclesArray[2])+", " + getOnlySingleVehicleTranslation(vehiclesArray[3])+ "<br>";
         } else {
             try {

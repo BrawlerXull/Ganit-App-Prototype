@@ -73,7 +73,7 @@ public class ExcelSheet {
 
 
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 200; i++) {
             String chartTitle = "Chart " + (i + 1);
             String xAxisLabel = "Category";
             String yAxisLabel = "Value";
@@ -91,7 +91,7 @@ public class ExcelSheet {
 
             String[] questions = Arrays.copyOfRange(Questions.getRandomQuestions(13), 0, 5);
 
-            System.out.println(Arrays.toString(questions));
+//            System.out.println(Arrays.toString(questions));
 
             String[] answers = new String[5];
 
