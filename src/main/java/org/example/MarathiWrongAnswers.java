@@ -36,12 +36,12 @@ public class MarathiWrongAnswers {
                     " travelers.<br>#$1$ सी.एम. य-अक्षावर " + variedNumber + " प्रवाशींची दर्शवणार.<br>";
         }
         return switch (answer.toLowerCase()) {
-            case "this bar graph represents the number of students by different means." ->
-                    "This bar graph represents the number of students by different means.<br>#हा स्तंभालेख विविध स्थानिकांची संख्या दर्शवितोय.<br>";
-            case "this bar graph represents the number of teachers by different means." ->
-                    "This bar graph represents the number of teachers by different means.<br>#हा स्तंभालेख विविध शिक्षकांची संख्या दर्शवितोय.<br>";
-            case "this bar graph represents the number of principal by different means." ->
-                    "This bar graph represents the number of principal by different means.<br>#हा स्तंभालेख विविध प्रमुखांची संख्या दर्शवितोय.<br>";
+            case "number of students travelling by different vehicles." ->
+                    "Number of students travelling by different vehicles.<br>#हा स्तंभालेख विविध प्रवासाच्या माध्यमांतून प्रवास करणाऱ्या विद्यार्थ्यांची संख्या दर्शवितो.<br>";
+            case "number of teachers travelling by different vehicles." ->
+                    "Number of teachers travelling by different vehicles.<br>#हा स्तंभालेख विविध प्रवासाच्या माध्यमांतून प्रवास करणाऱ्या शिक्षकांची संख्या दर्शवितो.<br>";
+            case "number of principal travelling by different vehicles." ->
+                    "Number of principals travelling by different vehicles.<br>#हा स्तंभालेख विविध प्रवासाच्या माध्यमांतून प्रवास करणाऱ्या मुख्याध्यापकांची संख्या दर्शवितो.<br>";
             case "$1$ cm on the y-axis represents $9$ travelers" ->
                     "$1$ cm on the y-axis represents $9$ travelers<br>#एक सी.एम. य-अक्षावर $9$ प्रवाशींची दर्शवणार<br>";
             case "$1$ cm on the y-axis represents $10$ travelers" ->

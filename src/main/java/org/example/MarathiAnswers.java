@@ -20,7 +20,10 @@ public class MarathiAnswers {
             System.out.println(answer + "answer");
             System.out.println(Arrays.toString(vehiclesArray) + "arrayV");
             marathiAnswer =answer + "<br>"+"#" +getOnlySingleVehicleTranslation(vehiclesArray[0])+", "+getOnlySingleVehicleTranslation(vehiclesArray[1])+", " +getOnlySingleVehicleTranslation(vehiclesArray[2])+", " + getOnlySingleVehicleTranslation(vehiclesArray[3])+ "<br>";
-        } else {
+        } else if (answer.contains("Number of travellers travelling by different vehicles.")) {
+            marathiAnswer = answer + "<br>#हा स्तंभालेख विविध प्रवासाच्या संख्या दर्शवितोय.<br>";
+        }
+        else {
             try {
                 int intValue = Integer.parseInt(answer.trim());
                 return "$" + answer + "$ <br>";
@@ -43,7 +46,7 @@ public class MarathiAnswers {
             default -> vehicle;
         };
     }
-    private static String getOnlySingleVehicleTranslation(String vehicle) {
+    static String getOnlySingleVehicleTranslation(String vehicle) {
         return switch (vehicle.trim().toLowerCase()) {
             case "scooter" -> "दुचाकी";
             case "car" -> "कार";

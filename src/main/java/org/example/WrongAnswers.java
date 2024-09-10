@@ -8,11 +8,11 @@ public class WrongAnswers {
         if (isInteger(input)) {
             int number = Integer.parseInt(input);
             return generateRandomNumbersNear(number);
-        } else if (input.equals("This bar graph represents the number of travelers by different means.")) {
+        } else if (input.equals("Number of travellers travelling by different vehicles.")) {
             return new String[]{
-                    "This bar graph represents the number of students by different means.",
-                    "This bar graph represents the number of teachers by different means.",
-                    "This bar graph represents the number of principal by different means."
+                    "Number of students travelling by different vehicles.",
+                    "Number of teachers travelling by different vehicles.",
+                    "Number of principal travelling by different vehicles."
             };
         } else if (input.contains("$1$ unit $=")) {
             return new String[]{

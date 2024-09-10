@@ -8,73 +8,96 @@ import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.axis.NumberTickUnit;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.BarRenderer;
+import org.jfree.chart.ui.RectangleEdge;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 import java.awt.*;
 
-public class BarGraph {
+import static org.example.MarathiAnswers.getOnlySingleVehicleTranslation;
 
-    private static String getOnlySingleVehicleTranslation(String vehicle) {
-        return switch (vehicle.trim().toLowerCase()) {
-            case "scooter" -> "Scooter/दुचाकी";
-            case "car" -> "Car/कार";
-            case "motorcycle" -> "Motorcycle/मोटरसायकल";
-            case "bicycle" -> "Bicycle/सायकल";
-            case "bus" -> "Bus/बस";
-            case "truck" -> "Truck/ट्रक";
-            default -> vehicle;
-        };
-    }
+public class BarGraph {
     static JFreeChart createBarGraph(String chartTitle, String xAxisLabel, String yAxisLabel,
                                      String[] categories, int[] values) {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         int maxElement = findMax(values);
         int bound = getBound(maxElement);
-        values = getNewValues(bound , values);
+        values = getNewValues(bound, values);
 
         for (int i = 0; i < categories.length; i++) {
-            dataset.addValue(values[i], "On Y-axis: 1 unit ="+ bound / 10 + "Travelers", getOnlySingleVehicleTranslation(categories[i]));
+            dataset.addValue(values[i], "Travelers", categories[i] + "/" + getOnlySingleVehicleTranslation(categories[i]) + " " + values[i]);
         }
 
         JFreeChart barChart = ChartFactory.createBarChart(
                 chartTitle,
                 xAxisLabel,
-                yAxisLabel,
+                yAxisLabel + "(1 Unit = " + bound / 10 + "Travelers)",
                 dataset,
                 PlotOrientation.VERTICAL,
-                true,
-                true,
-                false);
+                true,  // Include legend
+                true,  // Include tooltips
+                false  // Include URLs
+        );
+
         CategoryPlot plot = (CategoryPlot) barChart.getPlot();
-//        plot.setDomainCrosshairPaint(Color.black);
-        plot.setRangeGridlinePaint(Color.black);
-//        plot.setRangeCrosshairPaint(Color.black);
-//        plot.setRangeMinorGridlinePaint(Color.black);
-        NumberAxis yAxis = (NumberAxis) plot.getRangeAxis();
+
+        // Set gridline colors
+        plot.setRangeGridlinePaint(Color.black); // Y-axis gridlines
+        plot.setDomainGridlinePaint(Color.black); // X-axis gridlines
+
+        // Enable and configure gridlines
+        plot.setDomainGridlinesVisible(true); // Show X-axis gridlines
+        plot.setRangeGridlinesVisible(true);  // Show Y-axis gridlines
+
+        // Configure gridline styles
+        plot.setDomainGridlineStroke(new BasicStroke(1.5f));
+        plot.setRangeGridlineStroke(new BasicStroke(1.5f));
+
+        // Configure the axis
         CategoryAxis xAxis = (CategoryAxis) plot.getDomainAxis();
         xAxis.setAxisLinePaint(Color.black);
+        xAxis.setTickMarkPaint(Color.black);
+        xAxis.setTickMarkStroke(new BasicStroke(0.7f));
 
-        plot.setBackgroundPaint(new Color(0xFFCEFDA0, true));
+        // Set bold font for x-axis category labels
+        Font boldFont = new Font("SansSerif", Font.BOLD, 12);
+        xAxis.setTickLabelFont(boldFont);
 
-
-
+        NumberAxis yAxis = (NumberAxis) plot.getRangeAxis();
         yAxis.setRange(0, bound);
         yAxis.setTickMarksVisible(true);
         yAxis.setTickLabelsVisible(true);
         yAxis.setMinorTickCount(10);
         yAxis.setTickUnit(new NumberTickUnit((double) bound / 10));
         yAxis.setMinorTickMarksVisible(true);
-        yAxis.setMinorTickMarkInsideLength(710.0f);
+
+        // Adjust minor tick mark lengths based on the bound
+        if (bound == 10000) {
+            yAxis.setMinorTickMarkInsideLength(710.0f);
+        } else if (bound == 1000) {
+            yAxis.setMinorTickMarkInsideLength(718.0f);
+        } else if (bound == 100) {
+            yAxis.setMinorTickMarkInsideLength(723.0f);
+        } else if (bound == 10) {
+            yAxis.setMinorTickMarkInsideLength(728.0f);
+        }
+
         yAxis.setTickMarkPaint(Color.black);
         yAxis.setAxisLinePaint(Color.black);
         yAxis.setTickLabelPaint(Color.black);
         yAxis.setTickMarkStroke(new BasicStroke(0.7f));
 
         plot.setOutlinePaint(Color.black);
-        plot.setRangeGridlineStroke(new BasicStroke(1.0f));
-//        plot.setDomainGridlinesVisible(true);
-//        plot.setRangeMinorGridlinesVisible(true);
-//        plot.setRangeMinorGridlinesVisible(true);
+        plot.setBackgroundPaint(new Color(0xFFCEFDA0, true));
+
+        // Get the renderer and set the bar width
+        BarRenderer renderer = (BarRenderer) plot.getRenderer();
+        renderer.setMaximumBarWidth(0.1); // Set the maximum bar width (0.1 is 10% of the category width)
+
+        // Configure the legend
+        barChart.getLegend().setItemFont(new Font("SansSerif", Font.BOLD, 12)); // Set bold font for legend
+        barChart.getLegend().setPosition(RectangleEdge.BOTTOM); // Position the legend at the bottom
+        barChart.getLegend().setBackgroundPaint(new Color(0xFFCEFDA0, true)); // Background color for the legend
 
         return barChart;
     }
@@ -117,9 +140,7 @@ public class BarGraph {
                 values[i] = values[i] / 10;
                 values[i] = values[i] * 10;
             }
-
-
-        }else if(bound == 10000){
+        } else if(bound == 10000){
             for(int i = 0 ; i < values.length ; i ++){
                 values[i] = values[i] / 100;
                 values[i] = values[i] * 100;

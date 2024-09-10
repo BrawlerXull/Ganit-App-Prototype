@@ -9,8 +9,8 @@ import static org.example.BarGraph.getBound;
 public class Answers {
     public static String getAnswer(String question, int[] values, List<String> vehicleList) {
         return switch (question) {
-            case "This bar graph is for?" -> "This bar graph represents the number of travelers by different means.";
-            case "Scale used in this graph is?" -> {
+            case "This bar graph is for ..." -> "Number of travellers travelling by different vehicles.";
+            case "Scale used in this graph is ..." -> {
                 int maxElement = findMax(values);
                 int bound = getBound(maxElement);
 
@@ -22,7 +22,7 @@ public class Answers {
             }
 
 
-            case "How much is the total of travellers for top 3 values?" -> {
+            case "How much is the total of travellers for top $3$ values?" -> {
                 int totalTop3Values = calculateTotalTop3Values(values);
                 yield String.valueOf(totalTop3Values);
             }
@@ -32,7 +32,7 @@ public class Answers {
             case "Which vehicle is used most for travelling?", "Which vehicle is used most?" -> {
                 yield findMostUsedVehicle(values, vehicleList);
             }
-            case "How many different vehicles do travellers use?" -> {
+            case "How many different vehicles are used by travellers?" -> {
                 int numberOfDifferentVehicles = countDifferentVehicles(values);
                 yield String.valueOf(numberOfDifferentVehicles);
             }

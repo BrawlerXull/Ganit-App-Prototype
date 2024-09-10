@@ -27,15 +27,15 @@ public class Questions {
 
     public static String[] getQuestions() {
         return new String[]{
-                "This bar graph is for?",
-                "Scale used in this graph is?",
-                "How much is the total of travellers for top 3 values?",
+                "This bar graph is for ...",
+                "Scale used in this graph is ...",
+                "How much is the total of travellers for top $3$ values?",
                 "Which vehicle is used least for travelling?",
                 "Which vehicle is used most for travelling?",
-                "How many different vehicles do travellers use?",
-                "Which are the different vehicles used by travellers?",
                 "Which vehicle is used most?",
                 "Which vehicle is used least?",
+                "How many different vehicles are used by travellers?",
+                "Which are the different vehicles used by travellers?",
                 "How much is the difference in the number of travellers between the vehicle used most and least?",
                 "How many are the total travellers travelling by the vehicles used most and least?",
                 "How many are the total travellers?",
