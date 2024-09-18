@@ -71,6 +71,12 @@ public class ExcelSheet {
         headingRow.createCell(19).setCellValue("Variation Number");
         headingRow.createCell(20).setCellValue("");
 
+        String projectPath = System.getProperty("user.dir");
+        File imgFolder = new File(projectPath + File.separator + "img");
+
+        if (!imgFolder.exists()) {
+            imgFolder.mkdirs();
+        }
 
 
         for (int i = 0; i < 200; i++) {
@@ -83,7 +89,6 @@ public class ExcelSheet {
 
             JFreeChart barChart = BarGraph.createBarGraph(chartTitle, xAxisLabel, yAxisLabel, categories, values);
 
-            String projectPath = System.getProperty("user.dir");
 
             String imagePath = projectPath + File.separator + "img" + File.separator + "chart_" + (i + 1) + ".png";
 

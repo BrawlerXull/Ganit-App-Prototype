@@ -55,8 +55,27 @@ public class Answers {
                 int totalSecondThirdMostUsed = calculateTotalSecondThirdMostUsed(values, vehicleList);
                 yield String.valueOf(totalSecondThirdMostUsed);
             }
+
+            case "How many are the travellers travelling by second minimum used vehicle?" -> {
+                int secondMinimumUsedVehicle = calculateTravellersBySecondMinimum(values);
+                yield String.valueOf(secondMinimumUsedVehicle);
+            }
+            case "How many are the travellers travelling by third maximum used vehicle?" -> {
+                int thirdMaximumUsedVehicle = calculateTravellersByThirdMaximum(values);
+                yield String.valueOf(thirdMaximumUsedVehicle);
+            }
             default -> "Invalid question";
         };
+    }
+
+    private static int calculateTravellersBySecondMinimum(int[] values) {
+        Arrays.sort(values);
+        return values[1];
+    }
+
+    private static int calculateTravellersByThirdMaximum(int[] values) {
+        Arrays.sort(values);
+        return values[1];
     }
 
 

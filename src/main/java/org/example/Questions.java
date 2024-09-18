@@ -32,14 +32,15 @@ public class Questions {
                 "How much is the total of travellers for top $3$ values?",
                 "Which vehicle is used least for travelling?",
                 "Which vehicle is used most for travelling?",
-                "Which vehicle is used most?",
-                "Which vehicle is used least?",
+                "How many are the travellers travelling by second minimum used vehicle?",
+                "How many are the travellers travelling by third maximum used vehicle?",
                 "How many different vehicles are used by travellers?",
                 "Which are the different vehicles used by travellers?",
                 "How much is the difference in the number of travellers between the vehicle used most and least?",
                 "How many are the total travellers travelling by the vehicles used most and least?",
                 "How many are the total travellers?",
-                "How many are the total of travellers travelling by the second and third most used vehicle?"
+                "How many are the total of travellers travelling by the second and third most used vehicle?",
+
         };
     }
 }

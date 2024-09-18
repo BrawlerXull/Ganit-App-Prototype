@@ -4,6 +4,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static org.example.BarGraph.findMax;
+import static org.example.BarGraph.getBound;
+
 public class Solution {
     public static String getSolution(String question, int[] values, List<String> vehicleList) {
         String answer = Answers.getAnswer(question, values, vehicleList);
@@ -65,15 +68,23 @@ public class Solution {
             }
             case "Which are the different vehicles used by travellers?" -> {
                 String answer1 = String.join(", ", vehicleList);
+//                String vehicleListString = vehicleList.stream()
+//                        .map(vehicle -> "$" + vehicle + "$")
+//                        .collect(Collectors.joining(", "));
+
                 String vehicleListString = vehicleList.stream()
                         .map(vehicle -> "$" + vehicle + "$")
+                        .collect(Collectors.joining(", "));
+
+                String vehicleListMarathi = vehicleList.stream()
+                        .map(Solution::getSingleVehicleTranslation)
                         .collect(Collectors.joining(", "));
 
                 yield String.format("Ans: %s<br>" +
                                 "From the given graph we can see that, %s these are the different vehicles used is the answer.<br>" +
                                 "#उत्तर : %s<br>" +
                                 "दिलेल्या स्तंभालेखानुसार %s अशी वाहने वापरली जातात हे उत्तर.<br>",
-                        answer1, vehicleListString, answer1, vehicleListString);
+                        answer1, vehicleListString, answer1, vehicleListMarathi);
             }
             case "How much is the difference in the number of travellers between the vehicle used most and least?" -> {
                 int maxValue = Arrays.stream(values).max().orElse(0);
@@ -147,10 +158,57 @@ public class Solution {
                         maxValue, minValue, maxValue, minValue, sum);
             }
             case "Scale used in this graph is ..." -> {
-                yield "Ans : $1$ unit = $. . .$ vehicles<br>" +
-                        "As shown in the bar graph, the scale used is, $1$ unit = $. . .$ vehicles.<br>" +
-                        "#उत्तर : $1$ एकक = $. . .$ वाहने<br>" +
-                        "स्तंभलेखात दाखविल्यानुसार वापरलेले प्रमाण $1$ एकक = $. . .$ वाहने असे आहे.<br>";
+                System.out.println(answer);
+                int maxElement = findMax(values);
+                int bound = getBound(maxElement);
+                int scaleValue = bound / 10;
+                String scaleEnglish = String.format("$1$ unit $= %d$ vehicles", scaleValue);
+                String scaleMarathi = String.format("$1$ एकक $= %d$ वाहने", scaleValue);
+                yield String.format("Ans: %s<br>" +
+                        "As shown in the bar graph, the scale used is, %s.<br>" +
+                                "#उत्तर : %s<br>" +
+                                "स्तंभलेखात दाखविल्यानुसार वापरलेले प्रमाण %s असे आहे.<br>" , scaleEnglish, scaleEnglish,
+                        scaleMarathi, scaleMarathi);
+            }
+
+            case "How many are the travellers travelling by second minimum used vehicle?" -> {
+                int[] sortedValues = Arrays.copyOf(values, values.length);
+                Arrays.sort(sortedValues);
+                int secondMinValue = sortedValues[1];
+                String secondMinVehicle = vehicleList.get(valuesToIndex(values, secondMinValue));
+                yield String.format("Ans: $%d$<br>From the given graph we can see that<br>" +
+                                "Second minimum used vehicle is %s and No. of travellers using this vehicle are $%d$, is the answer.<br>" +
+                                "#उत्तर : $%d$<br>दिलेल्या स्तंभालेखानुसार<br>" +
+                                "दोन क्रमांकाचे सर्वात कमी वापरले जाणारे वाहन %s आहे, आणि हे वाहन वापरणाऱ्यांची संख्या $%d$ हे उत्तर.<br>",
+                        secondMinValue, secondMinVehicle, secondMinValue, secondMinValue,
+                        getSingleVehicleTranslation(secondMinVehicle), secondMinValue);
+            }
+            case "How many are the travellers travelling by third maximum used vehicle?" -> {
+                int[] sortedValues = Arrays.copyOf(values, values.length);
+                Arrays.sort(sortedValues);
+                int thirdMaxValue = sortedValues[sortedValues.length - 3];
+                String thirdMaxVehicle = vehicleList.get(valuesToIndex(values, thirdMaxValue));
+                yield String.format("Ans: $%d$<br>From the given graph we can see that<br>" +
+                                "Third maximum used vehicle is %s and No. of travellers using this vehicle are $%d$, is the answer.<br>" +
+                                "#उत्तर : $%d$<br>दिलेल्या स्तंभालेखानुसार<br>" +
+                                "तीन क्रमांकाचे सर्वात जास्त वापरले जाणारे वाहन %s आहे, आणि हे वाहन वापरणाऱ्यांची संख्या $%d$ हे उत्तर.<br>",
+                        thirdMaxValue, thirdMaxVehicle, thirdMaxValue, thirdMaxValue,
+                        getSingleVehicleTranslation(thirdMaxVehicle), thirdMaxValue);
+            }
+            case "How many different vehicles are used by travellers?" -> {
+                String vehicleListString = vehicleList.stream()
+                        .map(vehicle -> "$" + vehicle + "$")
+                        .collect(Collectors.joining(", "));
+
+                String vehicleListMarathi = vehicleList.stream()
+                        .map(Solution::getSingleVehicleTranslation)
+                        .collect(Collectors.joining(", "));
+
+                int uniqueVehicleCount = (int) vehicleList.stream().distinct().count();
+
+                yield String.format("Ans: $%d$<br>From the given graph we can see that, %s these are the different vehicles used is the answer.<br>" +
+                                "#उत्तर : $%d$<br>दिलेल्या स्तंभालेखानुसार %s अशी वाहने वापरली जातात हे उत्तर.<br>",
+                        uniqueVehicleCount, vehicleListString, uniqueVehicleCount, vehicleListMarathi);
             }
             default ->
                     "";
@@ -167,5 +225,14 @@ public class Solution {
             case "truck" -> "ट्रक";
             default -> vehicle;
         };
+    }
+
+    private static int valuesToIndex(int[] values, int value) {
+        for (int i = 0; i < values.length; i++) {
+            if (values[i] == value) {
+                return i;
+            }
+        }
+        throw new IllegalArgumentException("Value not found in the array.");
     }
 }

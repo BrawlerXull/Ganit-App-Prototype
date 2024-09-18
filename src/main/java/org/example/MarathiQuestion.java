@@ -26,6 +26,10 @@ public class MarathiQuestion {
                    "How many are the total travellers?<br>#एकूण प्रवासी किती आहेत?<br>";
            case "How many are the total of travellers travelling by the second and third most used vehicle?" ->
                    "How many are the total of travellers travelling by the second and third most used vehicle?<br>#दोन क्रमांकाचे सर्वात जास्त वापरले जाणारे  वाहन आणि तीन क्रमांकाचे सर्वात जास्त वापरले जाणारे वाहन यांची मिळून एकूण प्रवाशांची एकूण संख्या किती?<br>";
+           case "How many are the travellers travelling by second minimum used vehicle?" ->
+                   "How many are the travellers travelling by second minimum used vehicle?<br>#दोन क्रमांकाचे सर्वात कमी वापरले जाणाऱ्या वाहनातील प्रवाशांची संख्या किती?<br>";
+           case "How many are the travellers travelling by third maximum used vehicle?" ->
+                    "How many are the travellers travelling by third maximum used vehicle?<br>#तीन क्रमांकाचे सर्वात जास्त वापरले जाणाऱ्या वाहनातील प्रवाशांची संख्या किती?<br>";
            default -> englishText;
        };
     }
