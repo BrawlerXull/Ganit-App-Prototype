@@ -107,7 +107,7 @@ public class Solution {
                         maxValue, minValue, maxValue, minValue, difference);
             }
             case "This bar graph is for ..." -> {
-                yield "Ans : $Number of travellers travelling by different vehicles$<br>" +
+                yield "Ans : Number of travellers travelling by different vehicles<br>" +
                         "As mentioned in the problem statement, the bar graph shows the number of travellers, travelling by different vehicles.<br>" +
                         "#उत्तर : वेगवेगळ्या वाहनांतून प्रवास करणाऱ्या प्रवाशांची संख्या दाखविण्यासाठी<br>" +
                         "प्रश्नात दिल्यानुसार वेगवेगळ्या वाहनांतून प्रवास करणाऱ्या प्रवाशांची संख्या दाखविण्यासाठी हा स्तंभालेख आहे.<br>";

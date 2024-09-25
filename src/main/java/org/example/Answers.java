@@ -78,14 +78,15 @@ public class Answers {
         return values[1];
     }
 
-
     private static int calculateTotalTop3Values(int[] values) {
-        int total = 0;
+        if (values.length < 3) {
+            return Arrays.stream(values).sum();
+        }
+        int[] sortedValues = values.clone();
+        Arrays.sort(sortedValues);
 
-        Arrays.sort(values);
-        int l = values.length;
-        total = values[l - 1] + values[l - 2] + values[l - 3];
-        return total;
+
+        return sortedValues[sortedValues.length - 1] + sortedValues[sortedValues.length - 2] + sortedValues[sortedValues.length - 3];
     }
 
     private static String findLeastUsedVehicle(int[] values, List<String> vehicleList) {
