@@ -168,7 +168,7 @@ public class ExcelSheet {
             System.out.println("**************");
 
         }
-        for (int i = 0; i < 16; i++) {
+        for (int i = 0; i < 21; i++) {
             if (i != 14) {
                 combinedSheet.autoSizeColumn(i);
             }

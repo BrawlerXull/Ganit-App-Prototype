@@ -71,6 +71,20 @@ public class BarGraph {
         yAxis.setTickUnit(new NumberTickUnit((double) bound / 10));
         yAxis.setMinorTickMarksVisible(true);
 
+        Font marathiFont = new Font("Noto Sans Devanagari", Font.PLAIN, 12); // Change to your installed font
+
+        // Set font for title
+        barChart.getTitle().setFont(marathiFont);
+
+        // Set font for x-axis labels
+        xAxis.setTickLabelFont(marathiFont);
+
+        // Set font for y-axis labels
+        yAxis.setTickLabelFont(marathiFont);
+
+        // Set font for legend
+        barChart.getLegend().setItemFont(marathiFont);
+
         // Adjust minor tick mark lengths based on the bound
         if (bound == 10000) {
             yAxis.setMinorTickMarkInsideLength(710.0f);

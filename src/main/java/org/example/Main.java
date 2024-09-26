@@ -3,8 +3,11 @@ package org.example;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.awt.*;
+import java.awt.Font;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Arrays;
 
 
 public class Main {
@@ -12,6 +15,10 @@ public class Main {
         try (Workbook workbook = new XSSFWorkbook()) {
             Sheet combinedSheet = ExcelSheet.createNewSheet(workbook);
             ExcelSheet.generateDataAndCharts(combinedSheet);
+//            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+//            Font[] fonts = ge.getAllFonts();
+//            System.out.println(Arrays.toString(fonts));
+
 
             try (FileOutputStream fileOut = new FileOutputStream("output.xlsx")) {
                 workbook.write(fileOut);
