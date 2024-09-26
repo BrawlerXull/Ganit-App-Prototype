@@ -25,7 +25,7 @@ public class BarGraph {
         values = getNewValues(bound, values);
 
         for (int i = 0; i < categories.length; i++) {
-            dataset.addValue(values[i], "Travelers", categories[i] + "/" + getOnlySingleVehicleTranslation(categories[i]) + " " + values[i]);
+            dataset.addValue(values[i], "Travelers", categories[i] + "/" + getOnlySingleVehicleTranslation(categories[i]));
         }
 
         JFreeChart barChart = ChartFactory.createBarChart(
@@ -60,7 +60,7 @@ public class BarGraph {
         xAxis.setTickMarkStroke(new BasicStroke(0.7f));
 
         // Set bold font for x-axis category labels
-        Font boldFont = new Font("SansSerif", Font.BOLD, 12);
+        Font boldFont = new Font("SansSerif", Font.BOLD, 13);
         xAxis.setTickLabelFont(boldFont);
 
         NumberAxis yAxis = (NumberAxis) plot.getRangeAxis();
@@ -71,7 +71,7 @@ public class BarGraph {
         yAxis.setTickUnit(new NumberTickUnit((double) bound / 10));
         yAxis.setMinorTickMarksVisible(true);
 
-        Font marathiFont = new Font("Noto Sans Devanagari", Font.BOLD, 12); // Change to your installed font
+        Font marathiFont = new Font("Noto Sans Devanagari", Font.BOLD, 13); // Change to your installed font
 
         // Set font for title
         barChart.getTitle().setFont(marathiFont);
@@ -91,13 +91,13 @@ public class BarGraph {
 
         // Adjust minor tick mark lengths based on the bound
         if (bound == 10000) {
-            yAxis.setMinorTickMarkInsideLength(710.0f);
+            yAxis.setMinorTickMarkInsideLength(1100.0f);
         } else if (bound == 1000) {
-            yAxis.setMinorTickMarkInsideLength(718.0f);
+            yAxis.setMinorTickMarkInsideLength(1110.0f);
         } else if (bound == 100) {
-            yAxis.setMinorTickMarkInsideLength(723.0f);
+            yAxis.setMinorTickMarkInsideLength(1120.0f);
         } else if (bound == 10) {
-            yAxis.setMinorTickMarkInsideLength(728.0f);
+            yAxis.setMinorTickMarkInsideLength(1130.0f);
         }
 
         yAxis.setTickMarkPaint(Color.black);
@@ -110,7 +110,7 @@ public class BarGraph {
 
         // Get the renderer and set the bar width
         BarRenderer renderer = (BarRenderer) plot.getRenderer();
-        renderer.setMaximumBarWidth(0.05); // Set the maximum bar width (0.1 is 10% of the category width)
+        renderer.setMaximumBarWidth(0.1); // Set the maximum bar width (0.1 is 10% of the category width)
 
         // Configure the legend
         barChart.getLegend().setItemFont(new Font("SansSerif", Font.BOLD, 12)); // Set bold font for legend

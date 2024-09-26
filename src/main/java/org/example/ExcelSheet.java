@@ -200,7 +200,7 @@ public class ExcelSheet {
 
     private static void saveChartAsImage(JFreeChart chart, String imagePath) {
         try {
-            ChartUtils.saveChartAsJPEG(new File(imagePath), chart, 800, 600);
+            ChartUtils.saveChartAsJPEG(new File(imagePath), chart, 1200, 1000);
         } catch (IOException e) {
             e.printStackTrace();
         }
