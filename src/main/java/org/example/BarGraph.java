@@ -31,7 +31,7 @@ public class BarGraph {
         JFreeChart barChart = ChartFactory.createBarChart(
                 chartTitle,
                 xAxisLabel,
-                yAxisLabel + "(1 Unit = " + bound / 10 + "Travelers)",
+                yAxisLabel + " (1 Unit = " + bound / 10 + "Travelers)",
                 dataset,
                 PlotOrientation.VERTICAL,
                 true,  // Include legend
@@ -71,7 +71,7 @@ public class BarGraph {
         yAxis.setTickUnit(new NumberTickUnit((double) bound / 10));
         yAxis.setMinorTickMarksVisible(true);
 
-        Font marathiFont = new Font("Noto Sans Devanagari", Font.PLAIN, 12); // Change to your installed font
+        Font marathiFont = new Font("Noto Sans Devanagari", Font.BOLD, 12); // Change to your installed font
 
         // Set font for title
         barChart.getTitle().setFont(marathiFont);
@@ -79,8 +79,12 @@ public class BarGraph {
         // Set font for x-axis labels
         xAxis.setTickLabelFont(marathiFont);
 
+        xAxis.setLabelFont(marathiFont);
+
         // Set font for y-axis labels
         yAxis.setTickLabelFont(marathiFont);
+
+        yAxis.setLabelFont(marathiFont);
 
         // Set font for legend
         barChart.getLegend().setItemFont(marathiFont);
@@ -106,7 +110,7 @@ public class BarGraph {
 
         // Get the renderer and set the bar width
         BarRenderer renderer = (BarRenderer) plot.getRenderer();
-        renderer.setMaximumBarWidth(0.1); // Set the maximum bar width (0.1 is 10% of the category width)
+        renderer.setMaximumBarWidth(0.05); // Set the maximum bar width (0.1 is 10% of the category width)
 
         // Configure the legend
         barChart.getLegend().setItemFont(new Font("SansSerif", Font.BOLD, 12)); // Set bold font for legend
