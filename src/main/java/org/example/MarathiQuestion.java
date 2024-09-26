@@ -13,8 +13,8 @@ public class MarathiQuestion {
                    "Which vehicle is used most for travelling?<br>#प्रवासासाठी सर्वात जास्त वापर कोणत्या वाहनाचा होतो?<br>";
            case "How many different vehicles are used by travellers?" ->
                    "How many different vehicles are used by travellers?<br>#प्रवासासाठी एकूण किती वेगवेगळी वाहने वापरली गेली आहेत?<br>";
-           case "Which are the different vehicles used by travellers?" ->
-                   "Which are the different vehicles used by travellers?<br>#प्रवासासाठी वापरलेली वेगवेगळी वाहने कोणती आहेत?<br>";
+           case "Which are the different vehicles are used by travellers?" ->
+                   "Which are the different vehicles are used by travellers?<br>#प्रवासासाठी वापरलेली वेगवेगळी वाहने कोणती आहेत?<br>";
            case "Which vehicle is used most?" -> "Which vehicle is used most?<br>#कोणते वाहन सर्वाधिक अधिक वापरले जाते?<br>";
            case "Which vehicle is used least?" ->
                    "Which vehicle is used least?<br>#कोणते वाहन सर्वाधिक कमी वापरले जाते?<br>";

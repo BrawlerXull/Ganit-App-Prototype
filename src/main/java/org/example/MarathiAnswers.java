@@ -17,8 +17,8 @@ public class MarathiAnswers {
                     " travelers.<br>#$1$ सी.एम. य-अक्षावर " + variedNumber + " प्रवाशींची दर्शवणार.<br>";
         } else if (answer.contains(",")) {
             String[] vehiclesArray = answer.split(",");
-            System.out.println(answer + "answer");
-            System.out.println(Arrays.toString(vehiclesArray) + "arrayV");
+//            System.out.println(answer + "answer");
+//            System.out.println(Arrays.toString(vehiclesArray) + "arrayV");
             marathiAnswer =answer + "<br>"+"#" +getOnlySingleVehicleTranslation(vehiclesArray[0])+", "+getOnlySingleVehicleTranslation(vehiclesArray[1])+", " +getOnlySingleVehicleTranslation(vehiclesArray[2])+", " + getOnlySingleVehicleTranslation(vehiclesArray[3])+ "<br>";
         } else if (answer.contains("Number of travellers travelling by different vehicles.")) {
             marathiAnswer = answer + "<br>#हा स्तंभालेख विविध प्रवासाच्या संख्या दर्शवितोय.<br>";

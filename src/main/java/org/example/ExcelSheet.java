@@ -109,6 +109,10 @@ public class ExcelSheet {
 
 
                 answers[j] = Answers.getAnswer(questions[j], values, Arrays.stream(categories).toList());
+                System.out.println(questions[j]);
+                System.out.println(answers[j]);
+                System.out.println(Arrays.toString(categories));
+                System.out.println(Arrays.toString(values));
 
                 String solution = Solution.getSolution(questions[j],values,Arrays.stream(categories).toList());
                 dataRow.createCell(17).setCellValue(solution);
@@ -161,6 +165,7 @@ public class ExcelSheet {
                     dataRow.createCell(20).setCellValue(2);
                 }
             }
+            System.out.println("**************");
 
         }
         for (int i = 0; i < 16; i++) {

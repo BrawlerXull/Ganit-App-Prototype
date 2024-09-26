@@ -36,7 +36,7 @@ public class Answers {
                 int numberOfDifferentVehicles = countDifferentVehicles(values);
                 yield String.valueOf(numberOfDifferentVehicles);
             }
-            case "Which are the different vehicles used by travellers?" -> {
+            case "Which are the different vehicles are used by travellers?" -> {
                 yield listDifferentVehicles(values, vehicleList);
             }
             case "How much is the difference in the number of travellers between the vehicle used most and least?" -> {
@@ -69,13 +69,15 @@ public class Answers {
     }
 
     private static int calculateTravellersBySecondMinimum(int[] values) {
-        Arrays.sort(values);
-        return values[1];
+        int[] sortedValues = values.clone();
+        Arrays.sort(sortedValues);
+        return sortedValues[1];
     }
 
     private static int calculateTravellersByThirdMaximum(int[] values) {
-        Arrays.sort(values);
-        return values[1];
+        int[] sortedValues = values.clone();
+        Arrays.sort(sortedValues);
+        return sortedValues[sortedValues.length - 3];
     }
 
     private static int calculateTotalTop3Values(int[] values) {
@@ -120,12 +122,12 @@ public class Answers {
     }
 
     private static String listDifferentVehicles(int[] values, List<String> vehicleList) {
-        System.out.println(vehicleList.toArray().length + "list" + vehicleList);
+//        System.out.println(vehicleList.toArray().length + "list" + vehicleList);
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < values.length; i++) {
                 result.append(vehicleList.get(i)).append(" , ");
         }
-        System.out.println(result + "result");
+//        System.out.println(result + "result");
         return result.toString();
     }
 
@@ -148,11 +150,11 @@ public class Answers {
         }
         return total;
     }
-
     private static int calculateTotalSecondThirdMostUsed(int[] values, List<String> vehicleList) {
-        Arrays.sort(values);
+        int[] valuesCopy = Arrays.copyOf(values, values.length);
+        Arrays.sort(valuesCopy);
 
-        return values[2] + values[1];
+        return valuesCopy[valuesCopy.length - 2] + valuesCopy[valuesCopy.length - 3];
     }
 
     private static int findMostUsedIndex(int[] values) {

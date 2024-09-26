@@ -35,7 +35,7 @@ public class Questions {
                 "How many are the travellers travelling by second minimum used vehicle?",
                 "How many are the travellers travelling by third maximum used vehicle?",
                 "How many different vehicles are used by travellers?",
-                "Which are the different vehicles used by travellers?",
+                "Which are the different vehicles are used by travellers?",
                 "How much is the difference in the number of travellers between the vehicle used most and least?",
                 "How many are the total travellers travelling by the vehicles used most and least?",
                 "How many are the total travellers?",

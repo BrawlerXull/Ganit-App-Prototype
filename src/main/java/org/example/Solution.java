@@ -66,7 +66,7 @@ public class Solution {
                         getSingleVehicleTranslation(vehicleList.get(2)), values[2], getSingleVehicleTranslation(vehicleList.get(3)), values[3],
                         values[0], values[1], values[2], values[3], Arrays.stream(values).sum());
             }
-            case "Which are the different vehicles used by travellers?" -> {
+            case "Which are the different vehicles are used by travellers?" -> {
                 String answer1 = String.join(", ", vehicleList);
 //                String vehicleListString = vehicleList.stream()
 //                        .map(vehicle -> "$" + vehicle + "$")
@@ -158,7 +158,7 @@ public class Solution {
                         maxValue, minValue, maxValue, minValue, sum);
             }
             case "Scale used in this graph is ..." -> {
-                System.out.println(answer);
+//                System.out.println(answer);
                 int maxElement = findMax(values);
                 int bound = getBound(maxElement);
                 int scaleValue = bound / 10;
