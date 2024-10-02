@@ -60,7 +60,7 @@ public class BarGraph {
         xAxis.setTickMarkStroke(new BasicStroke(0.7f));
 
         // Set bold font for x-axis category labels
-        Font boldFont = new Font("SansSerif", Font.BOLD, 13);
+        Font boldFont = new Font("SansSerif", Font.BOLD, 20);
         xAxis.setTickLabelFont(boldFont);
 
         NumberAxis yAxis = (NumberAxis) plot.getRangeAxis();
@@ -71,7 +71,7 @@ public class BarGraph {
         yAxis.setTickUnit(new NumberTickUnit((double) bound / 10));
         yAxis.setMinorTickMarksVisible(true);
 
-        Font marathiFont = new Font("Noto Sans Devanagari", Font.BOLD, 13); // Change to your installed font
+        Font marathiFont = new Font("Noto Sans Devanagari", Font.BOLD, 20); // Change to your installed font
 
         // Set font for title
         barChart.getTitle().setFont(marathiFont);
@@ -107,6 +107,17 @@ public class BarGraph {
 
         plot.setOutlinePaint(Color.black);
         plot.setBackgroundPaint(new Color(0xFFCEFDA0, true));
+
+        xAxis.setCategoryMargin(0.0); // Set to a smaller value to reduce spacing
+
+
+//        plot.setDomainAxis(new CategoryAxis() {
+//            @Override
+//            public void setLowerMargin(double margin) {
+//                super.setLowerMargin(margin); // Set a smaller margin (default is 0.05)
+//            }
+//        });
+
 
         // Get the renderer and set the bar width
         BarRenderer renderer = (BarRenderer) plot.getRenderer();
