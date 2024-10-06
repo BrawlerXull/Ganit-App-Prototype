@@ -218,6 +218,6 @@ public class ExcelSheet {
         String englishFormat = number + " Travellers";
         String hindiFormat = "#" + number + " प्रवाशी";
 
-        return englishFormat + "\n" + hindiFormat;
+        return englishFormat + hindiFormat;
     }
 }
