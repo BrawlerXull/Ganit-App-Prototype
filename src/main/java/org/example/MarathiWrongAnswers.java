@@ -1,7 +1,5 @@
 package org.example;
 
-import java.util.Arrays;
-
 public class MarathiWrongAnswers {
 
     public static String getMarathiWrongAnswers(String input) {

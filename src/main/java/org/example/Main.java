@@ -1,13 +1,11 @@
 package org.example;
 
-import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.awt.*;
-import java.awt.Font;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Arrays;
 
 
 public class Main {

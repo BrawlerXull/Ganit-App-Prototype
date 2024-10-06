@@ -104,7 +104,7 @@ public class Solution {
                                 "दिलेल्या स्तंभालेखानुसार<br>" +
                                 "सगळ्यात जास्त वापरल्या जाणाऱ्या वाहनासाठी प्रवाशांची संख्या $= %d$<br>" +
                                 "सगळ्यात कमी वापरलेल्या वाहनासाठी प्रवाशांची संख्या $= %d$<br>" +
-                                "या दोन्ही प्रवाशांच्या संख्यांचा फरक घेऊन आपल्याला<br>" +
+                                "या दोन्ही प्रवाशांच्या संख्येतील फरक घेऊन आपल्याला<br>" +
                                 "$%d - %d = %d$ हे उत्तर मिळते.<br>",
                         difference, maxValue, minValue, maxValue, minValue, difference, difference,
                         maxValue, minValue, maxValue, minValue, difference);
@@ -149,12 +149,12 @@ public class Solution {
                                 "From the given graph we can see that<br>" +
                                 "No. of travellers using the vehicle most $= %d$<br>" +
                                 "No. of travellers using the vehicle least $= %d$<br>" +
-                                "By taking the total of these two numbers we get<br>" +
+                                "By taking the addition of these two numbers we get<br>" +
                                 "$%d + %d = %d$ is the answer.<br>" +
                                 "#उत्तर : $%d$<br>" +
                                 "दिलेल्या स्तंभालेखानुसार<br>" +
                                 "सगळ्यात जास्त वापरल्या जाणाऱ्या वाहनासाठी प्रवाशांची संख्या $= %d$<br>" +
-                                "सगळ्यात कमी वापरलेल्या वाहनासाठी प्रवाशांची संख्या $= %d$<br>" +
+                                "सगळ्यात कमी वापरल्या जाणाऱ्या वाहनासाठी प्रवाशांची संख्या $= %d$<br>" +
                                 "या दोन्ही प्रवाशांच्या संख्यांची बेरीज घेऊन आपल्याला<br>" +
                                 "$%d + %d = %d$ हे उत्तर मिळते.<br>",
                         sum, maxValue, minValue, maxValue, minValue, sum, sum,
