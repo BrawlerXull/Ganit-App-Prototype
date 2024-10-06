@@ -22,7 +22,7 @@ public class Answers {
             }
 
 
-            case "How much is the total of travellers for top $3$ values?" -> {
+            case "How many is the total of travellers for top $3$ values?" -> {
                 int totalTop3Values = calculateTotalTop3Values(values);
                 yield String.valueOf(totalTop3Values);
             }
