@@ -91,7 +91,7 @@ public class Answers {
         return sortedValues[sortedValues.length - 1] + sortedValues[sortedValues.length - 2] + sortedValues[sortedValues.length - 3];
     }
 
-    private static String findLeastUsedVehicle(int[] values, List<String> vehicleList) {
+     static String findLeastUsedVehicle(int[] values, List<String> vehicleList) {
         int minIndex = 0;
         for (int i = 1; i < values.length; i++) {
             if (values[i] < values[minIndex]) {

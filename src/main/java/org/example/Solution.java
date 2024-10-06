@@ -17,17 +17,20 @@ public class Solution {
                 Arrays.sort(sortedValues);
                 int maxValue = sortedValues[sortedValues.length - 1];
                 yield String.format("Ans: %s<br>From the given graph we can see that<br>" +
-                                "No. of travellers using the vehicle most is $= %d$ $\\therefore$ $= %s$ is the answer.<br>" +
-                                "#उत्तर : $%s$<br>ददिलेल्या स्तंभालेखानुसार<br>" +
-                                "सगळ्यात जास्त वापरल्या जाणाऱ्या वाहनासाठी प्रवाशांची संख्या $= %d$ $\\therefore$ $= %s$ आहे, हे उत्तर.<br>",
+                                "No. of travellers using the vehicle most is $= %d$<br> $\\therefore$ %s is the answer.<br>" +
+                                "#उत्तर : %s<br>दिलेल्या स्तंभालेखानुसार<br>" +
+                                "सगळ्यात जास्त वापरल्या जाणाऱ्या वाहनासाठी प्रवाशांची संख्या $= %d$ आहे.<br> $\\therefore$ %s हे उत्तर.<br>",
                         answer,maxValue, answer, getSingleVehicleTranslation(answer),maxValue, getSingleVehicleTranslation(answer));
             }
             case "Which vehicle is used least for travelling?", "Which vehicle is used least?" ->
-                    String.format("Ans: %s<br>From the given graph we can see that<br>" +
-                                    "No. of travellers using the least used vehicle is $= %s$ $\\therefore$  is the answer.<br>" +
-                                    "#उत्तर : %s<br>दिलेल्या स्तंभालेखानुसार<br>" +
-                                    "सगळ्यात कमी वापरलेल्या वाहनासाठी प्रवाशांची संख्या $= %s$ आहे,$\\therefore$ हे उत्तर.<br>",
-                            answer,answer,getSingleVehicleTranslation(answer) , getSingleVehicleTranslation(answer));
+            {
+                int minValue = Arrays.stream(values).min().orElse(0);
+                yield String.format("Ans: %s<br>From the given graph we can see that<br>" +
+                            "No. of travellers using the least used vehicle is $= %d$<br> $\\therefore$ %s is the answer.<br>" +
+                            "#उत्तर : %s<br>दिलेल्या स्तंभालेखानुसार<br>" +
+                            "सगळ्यात कमी वापरलेल्या वाहनासाठी प्रवाशांची संख्या $= %d$ आहे. <br> $\\therefore$ %s हे उत्तर.<br>",
+                    answer,minValue,answer,getSingleVehicleTranslation(answer) , minValue,getSingleVehicleTranslation(answer));
+            }
             case "How many are the total of travellers travelling by the second and third most used vehicle?" -> {
                 int[] sortedValues = Arrays.copyOf(values, values.length);
                 Arrays.sort(sortedValues);

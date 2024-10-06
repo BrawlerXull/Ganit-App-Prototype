@@ -21,7 +21,7 @@ public class MarathiAnswers {
 //            System.out.println(Arrays.toString(vehiclesArray) + "arrayV");
             marathiAnswer =answer + "<br>"+"#" +getOnlySingleVehicleTranslation(vehiclesArray[0])+", "+getOnlySingleVehicleTranslation(vehiclesArray[1])+", " +getOnlySingleVehicleTranslation(vehiclesArray[2])+", " + getOnlySingleVehicleTranslation(vehiclesArray[3])+ "<br>";
         } else if (answer.contains("Number of travellers travelling by different vehicles.")) {
-            marathiAnswer = answer + "<br>#हा स्तंभालेख विविध प्रवासाच्या संख्या दर्शवितोय.<br>";
+            marathiAnswer = answer + "<br>#वेगवेगळ्या वाहनातून प्रवास करणाऱ्या प्रवाशांची संख्या दाखविण्यासाठी.<br>";
         }
         else {
             try {
