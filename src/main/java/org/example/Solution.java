@@ -75,9 +75,7 @@ public class Solution {
 //                        .map(vehicle -> "$" + vehicle + "$")
 //                        .collect(Collectors.joining(", "));
 
-                String vehicleListString = vehicleList.stream()
-                        .map(vehicle -> "$" + vehicle + "$")
-                        .collect(Collectors.joining(", "));
+                String vehicleListString = String.join(", ", vehicleList);
 
                 String vehicleListMarathi = vehicleList.stream()
                         .map(Solution::getSingleVehicleTranslation)
@@ -87,7 +85,7 @@ public class Solution {
                                 "From the given graph we can see that, %s these are the different vehicles used is the answer.<br>" +
                                 "#उत्तर : %s<br>" +
                                 "दिलेल्या स्तंभालेखानुसार %s अशी वाहने वापरली जातात हे उत्तर.<br>",
-                        answer1, vehicleListString, answer1, vehicleListMarathi);
+                        answer1, answer1, vehicleListMarathi, vehicleListMarathi);
             }
             case "How much is the difference in the number of travellers between the vehicle used most and least?" -> {
                 int maxValue = Arrays.stream(values).max().orElse(0);
@@ -199,9 +197,7 @@ public class Solution {
                         getSingleVehicleTranslation(thirdMaxVehicle), thirdMaxValue);
             }
             case "How many different vehicles are used by travellers?" -> {
-                String vehicleListString = vehicleList.stream()
-                        .map(vehicle -> "$" + vehicle + "$")
-                        .collect(Collectors.joining(", "));
+                String vehicleListString = String.join(", ", vehicleList);
 
                 String vehicleListMarathi = vehicleList.stream()
                         .map(Solution::getSingleVehicleTranslation)
@@ -209,8 +205,8 @@ public class Solution {
 
                 int uniqueVehicleCount = (int) vehicleList.stream().distinct().count();
 
-                yield String.format("Ans: $%d$<br>From the given graph we can see that, %s these are the different vehicles used is the answer.<br>" +
-                                "#उत्तर : $%d$<br>दिलेल्या स्तंभालेखानुसार %s अशी वाहने वापरली जातात हे उत्तर.<br>",
+                yield String.format("Ans: $%d$<br>From the given graph we can see that, %s these are the $4$ vehicles used is the answer.<br>" +
+                                "#उत्तर : $%d$<br>दिलेल्या स्तंभालेखानुसार %s अशी $4$ वाहने वापरली जातात हे उत्तर.<br>",
                         uniqueVehicleCount, vehicleListString, uniqueVehicleCount, vehicleListMarathi);
             }
             default ->
