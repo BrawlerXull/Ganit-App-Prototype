@@ -10,10 +10,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class ExcelSheet {
     public static Sheet createNewSheet(Workbook workbook) {
@@ -124,6 +121,9 @@ public class ExcelSheet {
                 dataRow.createCell(4).setCellValue(marathiQuestion);
 
                 String marathiAnswer = MarathiAnswers.getMarathiAnswers(answers[j]);
+                if(Objects.equals(questions[j], "How many is the total of travellers for top $3$ values?")){
+                    marathiAnswer = formatTravelers(marathiAnswer);
+                }
                 dataRow.createCell(5).setCellValue(marathiAnswer);
 
                 dataRow.createCell(6).setCellValue("");
@@ -138,6 +138,12 @@ public class ExcelSheet {
                 wrongAns1 = MarathiWrongAnswers.getMarathiWrongAnswers(listOfWrongAnswers[0]);
                 wrongAns2 = MarathiWrongAnswers.getMarathiWrongAnswers(listOfWrongAnswers[1]);
                 wrongAns3 = MarathiWrongAnswers.getMarathiWrongAnswers(listOfWrongAnswers[2]);
+
+                if(Objects.equals(questions[j], "How many is the total of travellers for top $3$ values?")){
+                    wrongAns1 = formatTravelers(wrongAns1);
+                    wrongAns2 = formatTravelers(wrongAns2);
+                    wrongAns3 = formatTravelers(wrongAns3);
+                }
 
                 dataRow.createCell(9).setCellValue(wrongAns1);
                 dataRow.createCell(10).setCellValue(wrongAns2);
@@ -204,5 +210,14 @@ public class ExcelSheet {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static String formatTravelers(String input) {
+        String number = input.replace("$", "");
+
+        String englishFormat = number + " Travellers";
+        String hindiFormat = "#" + number + " प्रवाशी";
+
+        return englishFormat + "\n" + hindiFormat;
     }
 }
