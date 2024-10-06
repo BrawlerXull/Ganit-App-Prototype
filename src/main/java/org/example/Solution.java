@@ -113,7 +113,7 @@ public class Solution {
                         "#उत्तर : वेगवेगळ्या वाहनांतून प्रवास करणाऱ्या प्रवाशांची संख्या दाखविण्यासाठी<br>" +
                         "प्रश्नात दिल्यानुसार वेगवेगळ्या वाहनांतून प्रवास करणाऱ्या प्रवाशांची संख्या दाखविण्यासाठी हा स्तंभालेख आहे.<br>";
             }
-            case "How much is the total of travellers for top $3$ values?" -> {
+            case "How many is the total of travellers for top $3$ values?" -> {
                 int[] sortedValues = Arrays.copyOf(values, values.length);
                 Arrays.sort(sortedValues);
 
@@ -123,17 +123,17 @@ public class Solution {
                 int l = sortedValues.length;
 
                 int sum = sortedValues[l - 1] + sortedValues[l - 2] + sortedValues[l - 3];
-                yield String.format("Ans: $%d$<br>From the given graph we can see that<br>" +
+                yield String.format("Ans: $%d$ travellers<br>From the given graph we can see that<br>" +
                                 "No. of travellers travelling by the most used vehicle is $= %d$<br>" +
                                 "No. of travellers travelling by the second most used vehicle is $= %d$<br>" +
                                 "No. of travellers travelling by the third most used vehicle is $= %d$<br>" +
                                 "By taking the addition of these three numbers we get<br>" +
                                 "$%d + %d + %d = %s$ is the answer.<br>" +
-                                "#उत्तर : $%d$<br>#दिलेल्या स्तंभालेखानुसार<br>" +
-                                "सर्वात जास्त वापरल्या जाणाऱ्या वाहनासाठी प्रवाशांची संख्या $= %s$<br>" +
-                                "दुसऱ्या क्रमांकाचे सर्वात जास्त वापरल्या जाणाऱ्या वाहनासाठी प्रवाशांची संख्या $= %s$<br>" +
-                                "तिसऱ्या क्रमांकाचे सर्वात जास्त वापरल्या जाणाऱ्या वाहनासाठी प्रवाशांची संख्या $= %s$<br>" +
-                                "या तिन्ही प्रवाशांच्या संख्यांची बेरीज घेऊन आपल्याला<br>" +
+                                "#उत्तर : $%d$ प्रवाशी<br>#दिलेल्या स्तंभालेखानुसार<br>" +
+                                "सगळ्यात जास्त वापरल्या जाणाऱ्या पहिल्या वाहनासाठी प्रवाशांची संख्या $= %s$<br>" +
+                                "त्या नंतर जास्त वापरल्या जाणाऱ्या दुसऱ्या वाहनासाठी प्रवाशांची संख्या $= %s$<br>" +
+                                "त्या नंतर जास्त वापरल्या जाणाऱ्या तिसऱ्या वाहनासाठी प्रवाशांची संख्या $= %s$<br>" +
+                                "या तीनही प्रवासी संख्येची बेरीज करून<br>" +
                                 "$%s + %s + %s = %s$ हे उत्तर मिळते.<br>",
                         sum,sortedValues[l - 1], sortedValues[l - 2], sortedValues[l - 3], sortedValues[l - 1], sortedValues[l - 2], sortedValues[l - 3], sum,
                         sum,sortedValues[l - 1], sortedValues[l - 2], sortedValues[l - 3], sortedValues[l - 1], sortedValues[l - 2], sortedValues[l - 3], sum);

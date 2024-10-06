@@ -29,7 +29,7 @@ public class Questions {
         return new String[]{
                 "This bar graph is for ...",
                 "Scale used in this graph is ...",
-                "How much is the total of travellers for top $3$ values?",
+                "How many is the total of travellers for top $3$ values?",
                 "Which vehicle is used least for travelling?",
                 "Which vehicle is used most for travelling?",
                 "How many are the travellers travelling by second minimum used vehicle?",
