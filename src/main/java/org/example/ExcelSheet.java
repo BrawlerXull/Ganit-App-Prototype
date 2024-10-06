@@ -213,11 +213,14 @@ public class ExcelSheet {
     }
 
     public static String formatTravelers(String input) {
-        String number = input.replace("$", "");
+        String[] parts = input.split("<br>");
+        String number = parts[0].trim();
 
-        String englishFormat = number + " Travellers";
-        String hindiFormat = "#" + number + " प्रवाशी";
+        String englishFormat = number + " Travellers<br>";
+        String hindiFormat = "# " + number + " प्रवाशी<br>";
 
         return englishFormat + hindiFormat;
     }
+
+
 }
