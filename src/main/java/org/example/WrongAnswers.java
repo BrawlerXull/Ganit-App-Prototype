@@ -11,7 +11,7 @@ public class WrongAnswers {
             return new String[]{
                     "Number of students travelling by different vehicles.",
                     "Number of teachers travelling by different vehicles.",
-                    "Number of principal travelling by different vehicles."
+                    "Number of principals travelling by different vehicles."
             };
         } else if (input.contains("$1$ unit $=")) {
             return new String[]{
