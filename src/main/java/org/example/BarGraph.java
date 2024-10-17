@@ -23,6 +23,9 @@ public class BarGraph {
         int bound = getBound(maxElement);
         values = getNewValues(bound, values);
 
+        Color backgroundColor = new Color(0xFFFFFF, true);
+        Color barColor = new Color(0x38812F);
+
         for (int i = 0; i < categories.length; i++) {
             dataset.addValue(values[i], "Travelers", categories[i] + "/" + getOnlySingleVehicleTranslation(categories[i]));
         }
@@ -105,7 +108,7 @@ public class BarGraph {
         yAxis.setTickMarkStroke(new BasicStroke(0.7f));
 
         plot.setOutlinePaint(Color.black);
-        plot.setBackgroundPaint(new Color(0xFFCEFDA0, true));
+        plot.setBackgroundPaint(backgroundColor);
 
         xAxis.setCategoryMargin(0.0); // Set to a smaller value to reduce spacing
 
@@ -121,11 +124,12 @@ public class BarGraph {
         // Get the renderer and set the bar width
         BarRenderer renderer = (BarRenderer) plot.getRenderer();
         renderer.setMaximumBarWidth(0.1); // Set the maximum bar width (0.1 is 10% of the category width)
+        renderer.setSeriesPaint(0 , barColor);
 
         // Configure the legend
         barChart.getLegend().setItemFont(new Font("SansSerif", Font.BOLD, 12)); // Set bold font for legend
         barChart.getLegend().setPosition(RectangleEdge.BOTTOM); // Position the legend at the bottom
-        barChart.getLegend().setBackgroundPaint(new Color(0xFFCEFDA0, true)); // Background color for the legend
+        barChart.getLegend().setBackgroundPaint(backgroundColor); // Background color for the legend
 
         return barChart;
     }
